@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Contact — Maison Paliquey Cap Ferret · Blanchisserie & Pressing</title>
+  <meta name="description" content="Contactez Maison Paliquey à Lège-Cap-Ferret : adresse, téléphone, horaires, formulaire de contact. Réponse sous 24 h ouvrées." />
+  <meta name="theme-color" content="#1B2A4A" />
+  <link rel="canonical" href="https://www.maisonpaliquey.fr/contact.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Contact — Maison Paliquey Cap Ferret · Blanchisserie & Pressing" />
+  <meta property="og:description" content="Contactez Maison Paliquey à Lège-Cap-Ferret : adresse, téléphone, horaires, formulaire de contact. Réponse sous 24 h ouvrées." />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:url" content="https://www.maisonpaliquey.fr/contact.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <script src="assets/js/site.js" defer></script>
+  
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="Maison Paliquey — accueil">
+        <span class="brand-mark" aria-hidden="true"><em>MP</em></span>
+        <span class="brand-name"><span>Maison Paliquey</span><span class="brand-sub">Cap Ferret</span></span>
+      </a>
+      <nav class="site-nav" aria-label="Navigation principale"><ul>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
+        <li><a href="reservation.html">Réservation</a></li>
+        <li><a href="a-propos.html">Notre maison</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></nav>
+      <div class="header-cta">
+        <a href="portail-pro.html" class="btn btn-outline btn-sm">Espace Pro</a>
+        <a href="reservation.html" class="btn btn-primary btn-sm">Devis gratuit</a>
+        <button class="mobile-toggle" aria-expanded="false" aria-label="Ouvrir le menu"><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-drawer" data-open="false" aria-hidden="true">
+    <nav aria-label="Navigation mobile"><ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="tarifs.html">Tarifs</a></li>
+      <li><a href="reservation.html">Réservation</a></li>
+      <li><a href="a-propos.html">Notre maison</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+      <div class="mobile-cta"><a href="portail-pro.html" class="btn btn-outline">Espace Pro</a><a href="reservation.html" class="btn btn-primary">Demander un devis</a></div>
+    </nav>
+  </div>
+
+
+  <section class="hero hero-compact">
+    <div class="container hero-inner">
+      <div class="hero-eyebrow">Nous contacter</div>
+      <h1>À <em>votre écoute</em>,<br>au cœur du Cap.</h1>
+      <p class="hero-lede">Une question, un dépôt, un devis : passez nous voir, téléphonez-nous ou écrivez-nous. Nous vous répondons sous 24 h ouvrées.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="alt-section">
+        <div class="alt-content">
+          <div class="eyebrow">Coordonnées</div>
+          <h2>La maison du linge,<br>au Cap Ferret.</h2>
+          <p style="margin-top:1.5rem;"><strong>Adresse</strong><br>Lège-Cap-Ferret<br>33950 Gironde · Nouvelle-Aquitaine</p>
+          <p><strong>Téléphone</strong><br><a href="tel:+33500000000" class="link-arrow">05 00 00 00 00</a></p>
+          <p><strong>Email</strong><br><a href="mailto:contact@maisonpaliquey.fr" class="link-arrow">contact@maisonpaliquey.fr</a></p>
+          <p style="margin-top:1.5rem;"><strong>Horaires d'ouverture</strong><br>
+            Lundi – Vendredi : 8h30 – 18h00<br>
+            Samedi : 9h00 – 12h30<br>
+            Dimanche : fermé<br>
+            <em style="color:var(--mp-gray); font-size:0.85rem;">Horaires étendus en juillet et août</em>
+          </p>
+        </div>
+
+        <form class="form-card" data-endpoint="/api/reservation" novalidate>
+          <div class="form-feedback" role="status" aria-live="polite"></div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="c-prenom">Prénom<span class="req">*</span></label>
+              <input class="form-control" type="text" id="c-prenom" name="prenom" autocomplete="given-name" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="c-tel">Téléphone</label>
+              <input class="form-control" type="tel" id="c-tel" name="telephone" autocomplete="tel" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="c-email">Email<span class="req">*</span></label>
+            <input class="form-control" type="email" id="c-email" name="email" autocomplete="email" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="c-service">Sujet</label>
+            <select class="form-control" id="c-service" name="service">
+              <option value="question">Question générale</option>
+              <option value="blanchisserie">Blanchisserie</option>
+              <option value="pressing">Pressing</option>
+              <option value="location">Location de linge</option>
+              <option value="professionnel">Compte professionnel</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="c-message">Votre message<span class="req">*</span></label>
+            <textarea class="form-control" id="c-message" name="message" rows="4" required></textarea>
+          </div>
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px;" aria-hidden="true" />
+          <input type="hidden" name="type_client" value="particulier" />
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Envoyer mon message</button>
+          <p class="form-reassurance">Réponse sous 24 h ouvrées · Aucun démarchage</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-ivory">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">FAQ rapide</div>
+        <h2>Questions fréquentes</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item"><summary class="faq-question">Faut-il prendre rendez-vous pour déposer son linge ?</summary><div class="faq-answer"><p>Non, vous pouvez passer à la maison sur nos horaires d'ouverture. Pour les volumes importants ou les dépôts urgents, un appel préalable est apprécié.</p></div></details>
+        <details class="faq-item"><summary class="faq-question">Récupérez-vous le linge à domicile ?</summary><div class="faq-answer"><p>Oui, sur le Cap Ferret et ses alentours, pour les volumes réguliers et les professionnels. Contactez-nous pour organiser un enlèvement.</p></div></details>
+        <details class="faq-item"><summary class="faq-question">Combien de temps pour récupérer mon linge ?</summary><div class="faq-answer"><p>Blanchisserie : 48 h ouvrées en standard. Pressing : 3 à 5 jours ouvrés selon la pièce. Des options express sont disponibles sur demande.</p></div></details>
+        <details class="faq-item"><summary class="faq-question">Quel est le moyen de paiement accepté ?</summary><div class="faq-answer"><p>Nous acceptons la carte bancaire, les espèces et les virements pour les comptes professionnels. Les factures sont émises sous 48 h après la prestation.</p></div></details>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand"><span class="brand-mark" aria-hidden="true"><em>MP</em></span><span>Maison Paliquey</span></a>
+          <p>Blanchisserie artisanale & maison de linge au Cap Ferret. Le soin du linge, l'élégance du cap.</p>
+        </div>
+        <div class="footer-col"><h4>Services</h4><ul>
+          <li><a href="services.html#blanchisserie">Blanchisserie</a></li>
+          <li><a href="services.html#pressing">Pressing</a></li>
+          <li><a href="services.html#location">Location de linge</a></li>
+          <li><a href="portail-pro.html">Espace Pro</a></li>
+        </ul></div>
+        <div class="footer-col"><h4>Maison</h4><ul>
+          <li><a href="a-propos.html">Notre maison</a></li>
+          <li><a href="tarifs.html">Tarifs</a></li>
+          <li><a href="reservation.html">Réservation</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul></div>
+        <div class="footer-col"><h4>Nous trouver</h4>
+          <address>Lège-Cap-Ferret<br>33950 · Gironde<br><br><a href="mailto:contact@maisonpaliquey.fr">contact@maisonpaliquey.fr</a></address>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© <span data-year>2026</span> Maison Paliquey — SAS LAVOK · Tous droits réservés</div>
+        <div class="legal-links">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="politique-confidentialite.html">Confidentialité</a>
+          <a href="https://app.maisonpaliquey.fr" class="team-link">Accès équipe —</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

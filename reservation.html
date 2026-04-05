@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Réservation & devis gratuit — Maison Paliquey Cap Ferret</title>
+  <meta name="description" content="Réservez votre service de blanchisserie, pressing ou location de linge au Cap Ferret. Devis gratuit sous 24 h — particuliers et professionnels." />
+  <meta name="theme-color" content="#1B2A4A" />
+  <link rel="canonical" href="https://www.maisonpaliquey.fr/reservation.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Réservation & devis gratuit — Maison Paliquey Cap Ferret" />
+  <meta property="og:description" content="Réservez votre service de blanchisserie, pressing ou location de linge au Cap Ferret. Devis gratuit sous 24 h — particuliers et professionnels." />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:url" content="https://www.maisonpaliquey.fr/reservation.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <script src="assets/js/site.js" defer></script>
+  
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="Maison Paliquey — accueil">
+        <span class="brand-mark" aria-hidden="true"><em>MP</em></span>
+        <span class="brand-name"><span>Maison Paliquey</span><span class="brand-sub">Cap Ferret</span></span>
+      </a>
+      <nav class="site-nav" aria-label="Navigation principale"><ul>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
+        <li><a href="reservation.html">Réservation</a></li>
+        <li><a href="a-propos.html">Notre maison</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></nav>
+      <div class="header-cta">
+        <a href="portail-pro.html" class="btn btn-outline btn-sm">Espace Pro</a>
+        <a href="reservation.html" class="btn btn-primary btn-sm">Devis gratuit</a>
+        <button class="mobile-toggle" aria-expanded="false" aria-label="Ouvrir le menu"><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-drawer" data-open="false" aria-hidden="true">
+    <nav aria-label="Navigation mobile"><ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="tarifs.html">Tarifs</a></li>
+      <li><a href="reservation.html">Réservation</a></li>
+      <li><a href="a-propos.html">Notre maison</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+      <div class="mobile-cta"><a href="portail-pro.html" class="btn btn-outline">Espace Pro</a><a href="reservation.html" class="btn btn-primary">Demander un devis</a></div>
+    </nav>
+  </div>
+
+
+  <section class="hero hero-compact">
+    <div class="container hero-inner">
+      <div class="hero-eyebrow">Réservation & devis</div>
+      <h1>Parlez-nous de <em>votre projet linge</em>.</h1>
+      <p class="hero-lede">Particulier, résident ou professionnel : décrivez-nous votre besoin en quelques lignes, nous revenons vers vous sous 24 h ouvrées avec un devis personnalisé.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container-narrow">
+      <form class="form-card" data-endpoint="/api/reservation" novalidate>
+        <div class="form-feedback" role="status" aria-live="polite"></div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="f-prenom">Prénom<span class="req">*</span></label>
+            <input class="form-control" type="text" id="f-prenom" name="prenom" autocomplete="given-name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="f-nom">Nom<span class="req">*</span></label>
+            <input class="form-control" type="text" id="f-nom" name="nom" autocomplete="family-name" required />
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="f-email">Email<span class="req">*</span></label>
+            <input class="form-control" type="email" id="f-email" name="email" autocomplete="email" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="f-tel">Téléphone<span class="req">*</span></label>
+            <input class="form-control" type="tel" id="f-tel" name="telephone" autocomplete="tel" required />
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="f-type">Type de client</label>
+            <select class="form-control" id="f-type" name="type_client">
+              <option value="particulier">Particulier</option>
+              <option value="professionnel">Professionnel (hôtel, restaurant, conciergerie…)</option>
+            </select>
+          </div>
+          <div class="form-group" id="f-entreprise-group" hidden>
+            <label class="form-label" for="f-entreprise">Nom de l'établissement</label>
+            <input class="form-control" type="text" id="f-entreprise" name="entreprise" autocomplete="organization" placeholder="Hôtel, restaurant, conciergerie…" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="f-service">Service souhaité<span class="req">*</span></label>
+            <select class="form-control" id="f-service" name="service" required>
+              <option value="">— Choisir un service —</option>
+              <option value="blanchisserie">Blanchisserie</option>
+              <option value="pressing">Pressing</option>
+              <option value="location">Location de linge</option>
+              <option value="multiple">Plusieurs services</option>
+              <option value="autre">Autre / sur-mesure</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="f-message">Votre demande<span class="req">*</span></label>
+          <textarea class="form-control" id="f-message" name="message" rows="5" required placeholder="Décrivez votre projet : volume approximatif, type de linge, période souhaitée, contraintes particulières…"></textarea>
+          <span class="form-help">Plus votre message est précis, plus notre devis sera adapté.</span>
+        </div>
+
+        <!-- Honeypot anti-spam (caché) -->
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px;" aria-hidden="true" />
+
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Envoyer ma demande</button>
+        <p class="form-reassurance">Réponse sous 24 h ouvrées · Aucun démarchage · Données protégées</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="section-ivory">
+    <div class="container text-center">
+      <div class="eyebrow">Préférez-vous un contact direct ?</div>
+      <h2>Nous sommes joignables.</h2>
+      <p class="text-muted mt-2">Passez nous voir à la maison, ou écrivez-nous directement.</p>
+      <div class="hero-ctas" style="justify-content:center; margin-top:2rem;">
+        <a href="mailto:contact@maisonpaliquey.fr" class="btn btn-primary btn-lg">contact@maisonpaliquey.fr</a>
+        <a href="contact.html" class="btn btn-outline btn-lg">Voir nos coordonnées</a>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand"><span class="brand-mark" aria-hidden="true"><em>MP</em></span><span>Maison Paliquey</span></a>
+          <p>Blanchisserie artisanale & maison de linge au Cap Ferret. Le soin du linge, l'élégance du cap.</p>
+        </div>
+        <div class="footer-col"><h4>Services</h4><ul>
+          <li><a href="services.html#blanchisserie">Blanchisserie</a></li>
+          <li><a href="services.html#pressing">Pressing</a></li>
+          <li><a href="services.html#location">Location de linge</a></li>
+          <li><a href="portail-pro.html">Espace Pro</a></li>
+        </ul></div>
+        <div class="footer-col"><h4>Maison</h4><ul>
+          <li><a href="a-propos.html">Notre maison</a></li>
+          <li><a href="tarifs.html">Tarifs</a></li>
+          <li><a href="reservation.html">Réservation</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul></div>
+        <div class="footer-col"><h4>Nous trouver</h4>
+          <address>Lège-Cap-Ferret<br>33950 · Gironde<br><br><a href="mailto:contact@maisonpaliquey.fr">contact@maisonpaliquey.fr</a></address>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© <span data-year>2026</span> Maison Paliquey — SAS LAVOK · Tous droits réservés</div>
+        <div class="legal-links">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="politique-confidentialite.html">Confidentialité</a>
+          <a href="https://app.maisonpaliquey.fr" class="team-link">Accès équipe —</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

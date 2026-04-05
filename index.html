@@ -1,113 +1,322 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Artisans du linge \u00e0 Cap Ferret. Blanchisserie, pressing, location de linge pour particuliers et professionnels du Bassin d'Arcachon. Devis gratuit.">
-  <meta name="theme-color" content="#1B2A4A">
-  <link rel="canonical" href="https://www.maisonpaliquey.fr">
-  <meta property="og:title" content="Maison Paliquey \u2014 Blanchisserie & Maison de Linge \u00e0 Cap Ferret">
-  <meta property="og:description" content="Votre linge, entre de bonnes mains. Blanchisserie artisanale, pressing, location de linge. Particuliers et professionnels.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.maisonpaliquey.fr">
-  <meta property="og:image" content="https://www.maisonpaliquey.fr/og-image.jpg">
-  <meta property="og:locale" content="fr_FR">
-  <meta property="og:site_name" content="Maison Paliquey">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Blanchisserie Cap Ferret — Maison Paliquey · Pressing & Location de linge</title>
+  <meta name="description" content="Maison Paliquey, blanchisserie artisanale au Cap Ferret. Pressing, location de linge, service dédié aux professionnels du tourisme. Devis gratuit sous 24 h." />
+  <meta name="theme-color" content="#1B2A4A" />
+  <link rel="canonical" href="https://www.maisonpaliquey.fr/" />
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Maison Paliquey — Blanchisserie & Maison de Linge · Cap Ferret" />
+  <meta property="og:description" content="Blanchisserie artisanale premium au Cap Ferret. Pressing, location de linge, service professionnels." />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:url" content="https://www.maisonpaliquey.fr/" />
+  <meta property="og:image" content="https://www.maisonpaliquey.fr/assets/img/og-default.jpg" />
 
-  <!-- Schema.org JSON-LD -->
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Styles & scripts -->
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <script src="assets/js/site.js" defer></script>
+
+  <!-- Schema.org LocalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": "https://www.maisonpaliquey.fr/#business",
-    "name": "Maison Paliquey \u2014 Blanchisserie & Maison de Linge",
-    "alternateName": "Maison Paliquey",
-    "image": "https://www.maisonpaliquey.fr/og-image.jpg",
-    "description": "Blanchisserie artisanale et service de pressing \u00e0 Cap Ferret. Location de linge pour particuliers et professionnels du Bassin d'Arcachon.",
+    "name": "Maison Paliquey",
+    "alternateName": "Maison Paliquey — Blanchisserie & Maison de Linge",
+    "description": "Blanchisserie artisanale, pressing et location de linge au Cap Ferret. Service pour particuliers et professionnels du Bassin d'Arcachon.",
+    "image": "https://www.maisonpaliquey.fr/assets/img/og-default.jpg",
+    "url": "https://www.maisonpaliquey.fr/",
+    "telephone": "+33-5-00-00-00-00",
+    "email": "contact@maisonpaliquey.fr",
+    "legalName": "SAS LAVOK",
+    "priceRange": "€€",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "28 ter Route de Bordeaux",
-      "addressLocality": "L\u00e8ge-Cap-Ferret",
-      "addressRegion": "Gironde",
+      "addressLocality": "Lège-Cap-Ferret",
       "postalCode": "33950",
+      "addressRegion": "Nouvelle-Aquitaine",
       "addressCountry": "FR"
     },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 44.7667,
-      "longitude": -1.1833
-    },
-    "telephone": "+33XXXXXXXXX",
-    "email": "contact@maisonpaliquey.fr",
-    "url": "https://www.maisonpaliquey.fr",
-    "priceRange": "\u20ac\u20ac",
-    "serviceArea": {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates",
-        "latitude": 44.7667,
-        "longitude": -1.1833
-      },
-      "geoRadius": "20000"
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Services de blanchisserie et linge",
-      "itemListElement": [
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Blanchisserie", "url": "https://www.maisonpaliquey.fr/blanchisserie"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Pressing", "url": "https://www.maisonpaliquey.fr/pressing"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Location de linge", "url": "https://www.maisonpaliquey.fr/location-linge"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Blanchisserie professionnelle", "url": "https://www.maisonpaliquey.fr/professionnels"}}
-      ]
-    },
-    "sameAs": [
-      "https://www.facebook.com/maisonpaliquey",
-      "https://www.instagram.com/maisonpaliquey"
+    "areaServed": [
+      { "@type": "City", "name": "Lège-Cap-Ferret" },
+      { "@type": "City", "name": "Arcachon" },
+      { "@type": "Place", "name": "Bassin d'Arcachon" }
     ],
     "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "08:00",
-        "closes": "18:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Saturday",
-        "opens": "09:00",
-        "closes": "12:00"
-      }
-    ]
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:30", "closes": "18:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "12:30" }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Services Maison Paliquey",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Blanchisserie artisanale" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pressing en sous-traitance" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Location de linge de maison" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Service linge professionnels" } }
+      ]
+    }
   }
   </script>
-
-  <title>Blanchisserie Cap Ferret \u2014 Maison Paliquey | Pressing & Location Linge</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-    }
-
-    body {
-      font-family: 'DM Sans', 'Jost', system-ui, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-  </style>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="Maison Paliquey — accueil">
+        <span class="brand-mark" aria-hidden="true"><em>MP</em></span>
+        <span class="brand-name">
+          <span>Maison Paliquey</span>
+          <span class="brand-sub">Cap Ferret</span>
+        </span>
+      </a>
+
+      <nav class="site-nav" aria-label="Navigation principale">
+        <ul>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="tarifs.html">Tarifs</a></li>
+          <li><a href="reservation.html">Réservation</a></li>
+          <li><a href="a-propos.html">Notre maison</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-cta">
+        <a href="portail-pro.html" class="btn btn-outline btn-sm">Espace Pro</a>
+        <a href="reservation.html" class="btn btn-primary btn-sm">Devis gratuit</a>
+        <button class="mobile-toggle" aria-expanded="false" aria-label="Ouvrir le menu">
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ DRAWER MOBILE ═══ -->
+  <div class="mobile-drawer" data-open="false" aria-hidden="true">
+    <nav aria-label="Navigation mobile">
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
+        <li><a href="reservation.html">Réservation</a></li>
+        <li><a href="a-propos.html">Notre maison</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="mobile-cta">
+        <a href="portail-pro.html" class="btn btn-outline">Espace Pro</a>
+        <a href="reservation.html" class="btn btn-primary">Demander un devis</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-eyebrow">Cap Ferret · Bassin d'Arcachon</div>
+      <h1>Votre linge,<br><em>entre de bonnes mains</em>.</h1>
+      <p class="hero-lede">
+        Blanchisserie artisanale au cœur du Cap Ferret. Pressing soigné, location de linge de maison, service dédié aux professionnels du tourisme — le soin du linge, l'élégance du cap.
+      </p>
+      <div class="hero-ctas">
+        <a href="reservation.html" class="btn btn-primary btn-lg">Demander un devis</a>
+        <a href="services.html" class="btn btn-outline btn-lg">Découvrir nos services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BANDE RÉASSURANCE ═══ -->
+  <div class="trust-bar">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="trust-icon" aria-hidden="true">✓</div>
+          <div><strong>Linge nominatif</strong><span>Aucun mélange</span></div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon" aria-hidden="true">⏱</div>
+          <div><strong>Délais respectés</strong><span>48 h standard</span></div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon" aria-hidden="true">◈</div>
+          <div><strong>Artisanal</strong><span>Savoir-faire maison</span></div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon" aria-hidden="true">◎</div>
+          <div><strong>Cap Ferret</strong><span>Ancrage local</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SERVICES ═══ -->
+  <section id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">Nos services</div>
+        <h2>Un savoir-faire, trois métiers</h2>
+        <p>Blanchisserie du quotidien, pressing de qualité pour vos pièces délicates, et location de linge de maison — tout le soin du linge, en un seul endroit.</p>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card reveal">
+          <div class="service-icon" aria-hidden="true">B</div>
+          <h3>Blanchisserie</h3>
+          <p>Lavage, séchage, repassage et pliage soigné. Linge de lit, de bain, de table ou vêtements du quotidien, traités nominativement et rendus impeccables.</p>
+          <a href="services.html#blanchisserie" class="link-arrow">En savoir plus →</a>
+        </article>
+
+        <article class="service-card reveal">
+          <div class="service-icon" aria-hidden="true">P</div>
+          <h3>Pressing</h3>
+          <p>Costumes, robes, manteaux, pièces d'exception : nos partenaires spécialisés prennent le relai pour un nettoyage à sec confié à des mains expertes.</p>
+          <a href="services.html#pressing" class="link-arrow">En savoir plus →</a>
+        </article>
+
+        <article class="service-card reveal">
+          <div class="service-icon" aria-hidden="true">L</div>
+          <h3>Location de linge</h3>
+          <p>Draps, serviettes, nappes, housses : équipez votre résidence secondaire, votre location saisonnière ou votre événement sans compromis sur la qualité.</p>
+          <a href="services.html#location" class="link-arrow">En savoir plus →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ POURQUOI NOUS — section alternée ═══ -->
+  <section class="section-ivory">
+    <div class="container">
+      <div class="alt-section reveal">
+        <div class="alt-content">
+          <div class="eyebrow">Pourquoi Maison Paliquey</div>
+          <h2>Un soin sur-mesure,<br>une relation de confiance.</h2>
+          <p>Parce que le linge raconte le quotidien, nous le traitons pièce par pièce, sans automatisme industriel. Chaque article est identifié, contrôlé, et rendu dans l'état qu'il mérite — impeccable.</p>
+          <p>Particuliers, résidents permanents, professionnels du tourisme : tous trouvent chez nous un interlocuteur unique, des délais tenus et une exigence intacte, saison après saison.</p>
+          <a href="a-propos.html" class="link-arrow mt-2">Découvrir notre maison →</a>
+        </div>
+        <div class="alt-visual" aria-hidden="true">
+          <span>Maison Paliquey</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PRO STRIP ═══ -->
+  <section class="pro-strip" id="pros">
+    <div class="container pro-strip-inner reveal">
+      <div>
+        <div class="eyebrow">Espace Professionnels</div>
+        <h2>Hôtels, restaurants, conciergeries :<br>un partenaire linge à votre mesure.</h2>
+        <p>Compte dédié, suivi nominatif, facturation mensuelle. Nous vous accompagnons toute l'année et nous montons en charge sans faillir en pleine saison.</p>
+      </div>
+      <a href="portail-pro.html" class="btn btn-sand btn-lg">Accéder à mon compte</a>
+    </div>
+  </section>
+
+  <!-- ═══ TÉMOIGNAGES ═══ -->
+  <section>
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">Ils nous font confiance</div>
+        <h2>Quelques mots de nos clients</h2>
+      </div>
+      <div class="testimonials-grid">
+        <blockquote class="testimonial reveal">
+          <div class="testimonial-stars" aria-label="5 étoiles sur 5">★★★★★</div>
+          <p>« Un service de grande qualité, avec une équipe disponible et à l'écoute. Nos draps reviennent impeccables, chaque semaine. »</p>
+          <cite><strong>Marie L.</strong> Conciergerie — Cap Ferret</cite>
+        </blockquote>
+        <blockquote class="testimonial reveal">
+          <div class="testimonial-stars" aria-label="5 étoiles sur 5">★★★★★</div>
+          <p>« Je leur confie mes vestes et mes robes depuis deux ans. Toujours un soin impeccable et jamais une mauvaise surprise. »</p>
+          <cite><strong>Philippe M.</strong> Résident — Lège-Cap-Ferret</cite>
+        </blockquote>
+        <blockquote class="testimonial reveal">
+          <div class="testimonial-stars" aria-label="5 étoiles sur 5">★★★★★</div>
+          <p>« Nous gérons 14 chambres. Sans Maison Paliquey, la saison serait infaisable. Fiables, réactifs, et d'une qualité constante. »</p>
+          <cite><strong>Laurent D.</strong> Gérant d'hôtel — Arcachon</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA FINAL ═══ -->
+  <section class="section-ivory">
+    <div class="container">
+      <div class="section-header reveal mb-0">
+        <div class="eyebrow">Prêt à nous confier votre linge ?</div>
+        <h2>Parlons de votre projet.</h2>
+        <p>Un devis, une question, un volume particulier ? Nous vous répondons sous 24 h ouvrées.</p>
+        <div class="hero-ctas" style="justify-content:center; margin-top:2rem;">
+          <a href="reservation.html" class="btn btn-primary btn-lg">Demander un devis</a>
+          <a href="contact.html" class="btn btn-outline btn-lg">Nous contacter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <span class="brand-mark" aria-hidden="true"><em>MP</em></span>
+            <span>Maison Paliquey</span>
+          </a>
+          <p>Blanchisserie artisanale & maison de linge au Cap Ferret. Le soin du linge, l'élégance du cap.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html#blanchisserie">Blanchisserie</a></li>
+            <li><a href="services.html#pressing">Pressing</a></li>
+            <li><a href="services.html#location">Location de linge</a></li>
+            <li><a href="portail-pro.html">Espace Pro</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Maison</h4>
+          <ul>
+            <li><a href="a-propos.html">Notre maison</a></li>
+            <li><a href="tarifs.html">Tarifs</a></li>
+            <li><a href="reservation.html">Réservation</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Nous trouver</h4>
+          <address>
+            Lège-Cap-Ferret<br>
+            33950 · Gironde<br><br>
+            <a href="mailto:contact@maisonpaliquey.fr">contact@maisonpaliquey.fr</a>
+          </address>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© <span data-year>2026</span> Maison Paliquey — SAS LAVOK · Tous droits réservés</div>
+        <div class="legal-links">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="politique-confidentialite.html">Confidentialité</a>
+          <a href="https://app.maisonpaliquey.fr" class="team-link">Accès équipe —</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Portail Pro — Maison Paliquey</title>
+  <meta name="theme-color" content="#1B2A4A" />
+  <meta name="description" content="Espace client professionnel Maison Paliquey : consultez vos commandes, locations et historique." />
+  <meta name="robots" content="noindex,nofollow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --mp-navy: #1B2A4A;
+      --mp-sand: #C4A882;
+      --mp-ivory: #F4EFE8;
+      --mp-bg: #F8F7F4;
+      --mp-dark: #2D2D2D;
+      --mp-gray: #6B7280;
+      --mp-light: #E5DDD3;
+      --mp-green: #2D6A4F;
+      --mp-red: #B91C1C;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+      background: var(--mp-bg);
+      color: var(--mp-dark);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; letter-spacing: -0.01em; color: var(--mp-navy); }
+    h1 { font-size: 2.25rem; }
+    h2 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    h3 { font-size: 1.125rem; }
+    a { color: var(--mp-navy); }
+
+    /* Header */
+    header {
+      background: white;
+      border-bottom: 1px solid var(--mp-light);
+      padding: 1rem 1.5rem;
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .logo-mark {
+      width: 40px; height: 40px;
+      background: var(--mp-navy);
+      color: var(--mp-ivory);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-style: italic;
+    }
+    .logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--mp-navy); }
+    .logo-text small { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.7rem; color: var(--mp-gray); letter-spacing: 0.15em; text-transform: uppercase; }
+
+    /* Layout */
+    main { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+    /* Login card */
+    .login-wrap { display: flex; align-items: center; justify-content: center; min-height: 70vh; }
+    .card {
+      background: white;
+      border: 1px solid var(--mp-light);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 1px 3px rgba(27, 42, 74, 0.05);
+    }
+    .login-card { max-width: 420px; width: 100%; }
+    .login-card h1 { text-align: center; margin-bottom: 0.5rem; }
+    .login-card p.subtitle { text-align: center; color: var(--mp-gray); margin-bottom: 2rem; font-size: 0.9rem; }
+
+    label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 0.4rem; color: var(--mp-dark); }
+    input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--mp-light);
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: inherit;
+      background: var(--mp-ivory);
+      color: var(--mp-dark);
+      margin-bottom: 1rem;
+    }
+    input:focus { outline: none; border-color: var(--mp-navy); background: white; }
+
+    button {
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-primary { background: var(--mp-navy); color: white; width: 100%; }
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-ghost { background: transparent; color: var(--mp-navy); border: 1px solid var(--mp-light); }
+
+    .error { color: var(--mp-red); font-size: 0.85rem; margin-bottom: 1rem; padding: 0.75rem; background: #FEF2F2; border-radius: 6px; }
+    .notice { color: var(--mp-gray); font-size: 0.8rem; text-align: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--mp-light); }
+
+    /* Dashboard */
+    .dashboard { display: none; }
+    .dashboard.active { display: block; }
+    .login-wrap.hidden { display: none; }
+
+    .welcome { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+    .welcome h1 { font-size: 1.75rem; }
+    .welcome p { color: var(--mp-gray); font-size: 0.9rem; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .kpi { background: white; border: 1px solid var(--mp-light); border-radius: 10px; padding: 1.25rem; }
+    .kpi-label { font-size: 0.75rem; color: var(--mp-gray); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500; }
+    .kpi-value { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--mp-navy); margin-top: 0.5rem; }
+    .kpi-sub { font-size: 0.8rem; color: var(--mp-gray); margin-top: 0.25rem; }
+
+    table { width: 100%; border-collapse: collapse; }
+    th { text-align: left; padding: 0.75rem; font-size: 0.75rem; text-transform: uppercase; color: var(--mp-gray); font-weight: 600; letter-spacing: 0.05em; background: var(--mp-ivory); border-bottom: 1px solid var(--mp-light); }
+    td { padding: 0.9rem 0.75rem; font-size: 0.9rem; border-bottom: 1px solid var(--mp-light); }
+    tr:last-child td { border-bottom: none; }
+    .badge { display: inline-block; padding: 0.25rem 0.6rem; border-radius: 999px; font-size: 0.75rem; font-weight: 500; }
+    .badge-green { background: #D1FAE5; color: #065F46; }
+    .badge-orange { background: #FEF3C7; color: #92400E; }
+    .badge-navy { background: #E0E7FF; color: #3730A3; }
+    .badge-gray { background: #F3F4F6; color: #4B5563; }
+
+    .empty { text-align: center; padding: 3rem 1rem; color: var(--mp-gray); }
+
+    @media (max-width: 640px) {
+      main { padding: 1rem; }
+      .card { padding: 1.5rem; }
+      th:nth-child(n+4), td:nth-child(n+4) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo" style="text-decoration: none;">
+        <div class="logo-mark">P</div>
+        <div class="logo-text">Maison Paliquey<small>Portail Pro</small></div>
+      </a>
+      <button class="btn-ghost" id="logoutBtn" style="display: none; padding: 0.5rem 1rem; font-size: 0.85rem;">Se déconnecter</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Login -->
+    <div class="login-wrap" id="loginWrap">
+      <div class="card login-card">
+        <h1>Espace Pro</h1>
+        <p class="subtitle">Connectez-vous pour consulter vos commandes et locations</p>
+        <div class="error" id="loginError" style="display: none;"></div>
+        <form id="loginForm">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required autocomplete="email" placeholder="vous@exemple.fr" />
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="••••••••" />
+          <button type="submit" class="btn-primary" id="loginBtn">Se connecter</button>
+        </form>
+        <p class="notice">Mot de passe oublié ? Contactez Maison Paliquey au <strong>05 56 XX XX XX</strong> ou par email à <a href="mailto:contact@maisonpaliquey.fr">contact@maisonpaliquey.fr</a>.</p>
+      </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="dashboard" id="dashboard">
+      <div class="welcome">
+        <div>
+          <h1 id="clientName">Bonjour</h1>
+          <p id="clientInfo"></p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="kpi">
+          <div class="kpi-label">Commandes en cours</div>
+          <div class="kpi-value" id="kpiEnCours">–</div>
+          <div class="kpi-sub">Sur l'année en cours</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Locations actives</div>
+          <div class="kpi-value" id="kpiLocActives">–</div>
+          <div class="kpi-sub">Kits en cours chez vous</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Total commandes</div>
+          <div class="kpi-value" id="kpiTotal">–</div>
+          <div class="kpi-sub">Historique complet</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">CA du mois en cours</div>
+          <div class="kpi-value" id="kpiCA">–</div>
+          <div class="kpi-sub">HT</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <h2>Commandes récentes</h2>
+        <div id="ordersTable"></div>
+      </div>
+
+      <div class="card">
+        <h2>Locations en cours</h2>
+        <div id="locationsTable"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Supabase JS SDK -->
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+
+    // ⚠️ Remplace ces valeurs par tes vraies credentials Supabase lors du déploiement
+    // (ou injecte-les via une variable d'env côté serveur / build)
+    const SUPABASE_URL = 'https://yiuxiwcvmixzmeimocbp.supabase.co'
+    const SUPABASE_ANON_KEY = 'REPLACE_WITH_ANON_KEY'
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+
+    const loginWrap = document.getElementById('loginWrap')
+    const dashboard = document.getElementById('dashboard')
+    const loginForm = document.getElementById('loginForm')
+    const loginError = document.getElementById('loginError')
+    const loginBtn = document.getElementById('loginBtn')
+    const logoutBtn = document.getElementById('logoutBtn')
+
+    // Session persistante
+    const SESSION_KEY = 'mp_pro_session'
+    const getSession = () => {
+      try { return JSON.parse(localStorage.getItem(SESSION_KEY) || 'null') } catch { return null }
+    }
+    const setSession = (s) => localStorage.setItem(SESSION_KEY, JSON.stringify(s))
+    const clearSession = () => localStorage.removeItem(SESSION_KEY)
+
+    // Au chargement : check session
+    const existingSession = getSession()
+    if (existingSession && existingSession.client_id) {
+      loadDashboard(existingSession.client_id)
+    }
+
+    // Login
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      loginError.style.display = 'none'
+      loginBtn.disabled = true
+      loginBtn.textContent = 'Connexion...'
+
+      const email = document.getElementById('email').value.trim().toLowerCase()
+      const password = document.getElementById('password').value
+
+      try {
+        // Cherche l'utilisateur pro par email
+        const { data: proUser, error } = await supabase
+          .from('pro_users')
+          .select('*')
+          .eq('email', email)
+          .eq('is_active', true)
+          .maybeSingle()
+
+        if (error || !proUser) {
+          throw new Error('Identifiants incorrects ou compte désactivé.')
+        }
+
+        // ⚠️ Vérification de mot de passe — v1 simple : compare avec temp_password en clair
+        // TODO (v2) : remplacer par une Supabase Edge Function qui fait bcrypt.compare
+        //             et retourne un JWT custom pour éviter d'exposer temp_password côté client.
+        const ok = proUser.temp_password && proUser.temp_password === password
+        if (!ok) {
+          throw new Error('Mot de passe incorrect.')
+        }
+
+        // Met à jour last_login
+        await supabase
+          .from('pro_users')
+          .update({ last_login: new Date().toISOString() })
+          .eq('id', proUser.id)
+
+        setSession({ client_id: proUser.client_id, email: proUser.email, pro_user_id: proUser.id })
+        loadDashboard(proUser.client_id)
+      } catch (err) {
+        loginError.textContent = err.message || 'Erreur de connexion.'
+        loginError.style.display = 'block'
+      } finally {
+        loginBtn.disabled = false
+        loginBtn.textContent = 'Se connecter'
+      }
+    })
+
+    // Logout
+    logoutBtn.addEventListener('click', () => {
+      clearSession()
+      dashboard.classList.remove('active')
+      loginWrap.classList.remove('hidden')
+      logoutBtn.style.display = 'none'
+    })
+
+    // Dashboard
+    async function loadDashboard(clientId) {
+      loginWrap.classList.add('hidden')
+      dashboard.classList.add('active')
+      logoutBtn.style.display = 'inline-block'
+
+      try {
+        const [{ data: client }, { data: commandes }, { data: locations }] = await Promise.all([
+          supabase.from('clients').select('*').eq('id', clientId).maybeSingle(),
+          supabase.from('commandes').select('*').eq('client_id', clientId).order('date_creation', { ascending: false }),
+          supabase.from('locations').select('*, kits_def(nom)').eq('client_id', clientId).order('date_sortie', { ascending: false }),
+        ])
+
+        document.getElementById('clientName').textContent = `Bonjour ${client?.nom || 'client'}`
+        document.getElementById('clientInfo').textContent = [client?.ville, client?.email].filter(Boolean).join(' · ')
+
+        // KPIs
+        const enCours = (commandes || []).filter(c => c.statut === 'en_cours' || c.statut === 'en_attente' || c.statut === 'en_traitement').length
+        const locActives = (locations || []).filter(l => l.statut === 'en_cours' || l.statut === 'sortie').length
+        const total = (commandes || []).length
+        const currentMonth = new Date().toISOString().slice(0, 7)
+        const caMois = (commandes || [])
+          .filter(c => (c.date_creation || '').startsWith(currentMonth))
+          .reduce((s, c) => s + Number(c.prix_total || 0), 0)
+
+        document.getElementById('kpiEnCours').textContent = enCours
+        document.getElementById('kpiLocActives').textContent = locActives
+        document.getElementById('kpiTotal').textContent = total
+        document.getElementById('kpiCA').textContent = caMois.toLocaleString('fr-FR') + ' €'
+
+        // Tableaux
+        renderOrders(commandes || [])
+        renderLocations(locations || [])
+      } catch (e) {
+        console.error('Erreur chargement dashboard', e)
+      }
+    }
+
+    const statusLabel = {
+      en_attente: { label: 'En attente', cls: 'badge-orange' },
+      en_cours: { label: 'En cours', cls: 'badge-navy' },
+      en_traitement: { label: 'En cours', cls: 'badge-navy' },
+      pret: { label: 'Prêt', cls: 'badge-green' },
+      livre: { label: 'Récupéré', cls: 'badge-gray' },
+      recupere: { label: 'Récupéré', cls: 'badge-gray' },
+      retourne: { label: 'Retourné', cls: 'badge-gray' },
+      sortie: { label: 'Chez vous', cls: 'badge-navy' },
+      termine: { label: 'Terminé', cls: 'badge-gray' },
+    }
+
+    function renderOrders(orders) {
+      const wrap = document.getElementById('ordersTable')
+      if (!orders.length) {
+        wrap.innerHTML = '<div class="empty">Aucune commande pour le moment.</div>'
+        return
+      }
+      const rows = orders.slice(0, 15).map(o => {
+        const st = statusLabel[o.statut] || { label: o.statut, cls: 'badge-gray' }
+        const date = o.date_creation ? new Date(o.date_creation).toLocaleDateString('fr-FR') : '—'
+        const nbArticles = (o.articles || []).length
+        return `<tr>
+          <td><strong>${escapeHtml(o.id?.slice(0, 10) || '')}</strong></td>
+          <td>${date}</td>
+          <td>${nbArticles} article${nbArticles > 1 ? 's' : ''}</td>
+          <td>${Number(o.prix_total || 0).toLocaleString('fr-FR')} €</td>
+          <td><span class="badge ${st.cls}">${st.label}</span></td>
+        </tr>`
+      }).join('')
+      wrap.innerHTML = `<table>
+        <thead><tr><th>Référence</th><th>Date</th><th>Articles</th><th>Montant</th><th>Statut</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>`
+    }
+
+    function renderLocations(locations) {
+      const wrap = document.getElementById('locationsTable')
+      const actives = locations.filter(l => l.statut === 'en_cours' || l.statut === 'sortie')
+      if (!actives.length) {
+        wrap.innerHTML = '<div class="empty">Aucune location en cours.</div>'
+        return
+      }
+      const rows = actives.map(l => {
+        const kitNom = l.kits_def?.nom || l.kit_def_id || '—'
+        const sortie = l.date_sortie ? new Date(l.date_sortie).toLocaleDateString('fr-FR') : '—'
+        const retour = l.date_retour_prevue ? new Date(l.date_retour_prevue).toLocaleDateString('fr-FR') : '—'
+        return `<tr>
+          <td><strong>${escapeHtml(kitNom)}</strong></td>
+          <td>${sortie}</td>
+          <td>${retour}</td>
+          <td>${Number(l.montant_ht || 0).toLocaleString('fr-FR')} € HT</td>
+        </tr>`
+      }).join('')
+      wrap.innerHTML = `<table>
+        <thead><tr><th>Kit</th><th>Sortie</th><th>Retour prévu</th><th>Montant</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>`
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
+    }
+  </script>
+</body>
+</html>
