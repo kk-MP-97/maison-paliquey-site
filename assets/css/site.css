@@ -662,6 +662,63 @@ em { font-style: italic; color: var(--mp-sand); }
   margin-top: 2px;
 }
 
+/* Gamme tables (location, kits) — 4 columns: Article | Confort | Premium | Luxe */
+.pricing-table--gamme { grid-column: 1 / -1; }
+.pricing-table--gamme .pricing-row--header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  background: var(--mp-navy);
+  color: var(--mp-white);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.75rem 1.5rem;
+  border-bottom: none;
+}
+.pricing-table--gamme .pricing-row--header span {
+  color: var(--mp-white);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  text-align: center;
+}
+.pricing-table--gamme .pricing-row--header span:first-child { text-align: left; }
+.pricing-table--gamme .pricing-row--gamme {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  padding: 0.85rem 1.5rem;
+  border-bottom: 1px solid var(--mp-light);
+  align-items: center;
+}
+.pricing-table--gamme .pricing-row--gamme span {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--mp-navy);
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+.pricing-table--gamme .pricing-row--gamme span:first-child {
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  font-weight: 500;
+}
+.pricing-table--gamme .pricing-row--gamme .text-muted {
+  color: var(--mp-gray);
+  font-size: 0.85rem;
+  font-style: italic;
+  font-weight: 400;
+}
+
 .pricing-grid {
   display: grid;
   gap: 2rem;
