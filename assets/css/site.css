@@ -1018,3 +1018,13 @@ select.form-control { appearance: none; background-image: url("data:image/svg+xm
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; }
 }
+
+
+/* === v1.0.4 — Logo SVG embedded dans le pill brand-mark === */
+.brand-mark--img {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  object-fit: contain;
+  display: block;
+}
