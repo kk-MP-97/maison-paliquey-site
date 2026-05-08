@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Blanchisserie Cap Ferret — Maison Paliquey · Pressing & Location de linge</title>
+  <title>Blanchisserie Cap Ferret — Maison Paliquey | Pressing & Linge</title>
   <meta name="description" content="Maison Paliquey, blanchisserie artisanale au Cap Ferret. Pressing, location de linge, service dédié aux professionnels du tourisme. Devis gratuit sous 24 h." />
   <meta name="theme-color" content="#1B2A4A" />
   <link rel="canonical" href="https://www.maisonpaliquey.fr/" />
@@ -15,6 +15,15 @@
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:url" content="https://www.maisonpaliquey.fr/" />
   <meta property="og:image" content="https://www.maisonpaliquey.fr/assets/img/og-default.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Maison Paliquey — Blanchisserie & Pressing au Cap Ferret" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Maison Paliquey — Blanchisserie & Maison de Linge · Cap Ferret" />
+  <meta name="twitter:description" content="Blanchisserie artisanale premium au Cap Ferret. Pressing, location de linge, service professionnels." />
+  <meta name="twitter:image" content="https://www.maisonpaliquey.fr/assets/img/og-default.jpg" />
+
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
@@ -40,17 +49,27 @@
     "description": "Blanchisserie artisanale, pressing et location de linge au Cap Ferret. Service pour particuliers et professionnels du Bassin d'Arcachon.",
     "image": "https://www.maisonpaliquey.fr/assets/img/og-default.jpg",
     "url": "https://www.maisonpaliquey.fr/",
-    "telephone": "+33-5-00-00-00-00",
+    "telephone": "+33-5-56-60-90-76",
     "email": "contact@maisonpaliquey.fr",
     "legalName": "SAS LAVOK",
     "priceRange": "€€",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "28 Route de Bordeaux, Petit Piquey",
       "addressLocality": "Lège-Cap-Ferret",
       "postalCode": "33950",
       "addressRegion": "Nouvelle-Aquitaine",
       "addressCountry": "FR"
     },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 44.7167,
+      "longitude": -1.2333
+    },
+    "hasMap": "https://www.google.com/maps/search/?api=1&query=Maison+Paliquey+Lege-Cap-Ferret",
+    "sameAs": [
+      "https://maps.app.goo.gl/Uq5CoaUZRio55Gft9"
+    ],
     "areaServed": [
       { "@type": "City", "name": "Lège-Cap-Ferret" },
       { "@type": "City", "name": "Arcachon" },
@@ -72,13 +91,38 @@
     }
   }
   </script>
+
+  <!-- Schema.org WebSite (sitelinks search box) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://www.maisonpaliquey.fr/#website",
+    "url": "https://www.maisonpaliquey.fr/",
+    "name": "Maison Paliquey",
+    "description": "Blanchisserie artisanale, pressing et location de linge au Cap Ferret",
+    "publisher": { "@id": "https://www.maisonpaliquey.fr/#business" },
+    "inLanguage": "fr-FR"
+  }
+  </script>
+
+  <!-- Schema.org BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.maisonpaliquey.fr/" }
+    ]
+  }
+  </script>
 </head>
 <body>
 
   <!-- ═══ HEADER ═══ -->
   <header class="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="brand" aria-label="Maison Paliquey — accueil">
+      <a href="/" class="brand" aria-label="Maison Paliquey — accueil">
         <img class="brand-mark brand-mark--img" src="assets/img/logo-mp.svg" alt="" aria-hidden="true" width="44" height="44">
         <span class="brand-name">
           <span>Maison Paliquey</span>
@@ -88,17 +132,17 @@
 
       <nav class="site-nav" aria-label="Navigation principale">
         <ul>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="tarifs.html">Tarifs</a></li>
-          <li><a href="reservation.html">Réservation</a></li>
-          <li><a href="a-propos.html">Notre maison</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/tarifs">Tarifs</a></li>
+          <li><a href="/reservation">Réservation</a></li>
+          <li><a href="/a-propos">Notre maison</a></li>
+          <li><a href="/contact">Contact</a></li>
         </ul>
       </nav>
 
       <div class="header-cta">
-        <a href="portail-pro.html" class="btn btn-outline btn-sm">Espace Pro</a>
-        <a href="reservation.html" class="btn btn-primary btn-sm">Devis gratuit</a>
+        <a href="/portail-pro" class="btn btn-outline btn-sm">Espace Pro</a>
+        <a href="/reservation" class="btn btn-primary btn-sm">Devis gratuit</a>
         <button class="mobile-toggle" aria-expanded="false" aria-label="Ouvrir le menu">
           <span></span>
         </button>
@@ -110,31 +154,33 @@
   <div class="mobile-drawer" data-open="false" aria-hidden="true">
     <nav aria-label="Navigation mobile">
       <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="tarifs.html">Tarifs</a></li>
-        <li><a href="reservation.html">Réservation</a></li>
-        <li><a href="a-propos.html">Notre maison</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/tarifs">Tarifs</a></li>
+        <li><a href="/reservation">Réservation</a></li>
+        <li><a href="/a-propos">Notre maison</a></li>
+        <li><a href="/contact">Contact</a></li>
       </ul>
       <div class="mobile-cta">
-        <a href="portail-pro.html" class="btn btn-outline">Espace Pro</a>
-        <a href="reservation.html" class="btn btn-primary">Demander un devis</a>
+        <a href="/portail-pro" class="btn btn-outline">Espace Pro</a>
+        <a href="/reservation" class="btn btn-primary">Demander un devis</a>
       </div>
     </nav>
   </div>
+
+  <main>
 
   <!-- ═══ HERO ═══ -->
   <section class="hero">
     <div class="container hero-inner">
       <div class="hero-eyebrow">Cap Ferret · Bassin d'Arcachon</div>
-      <h1>Votre linge,<br><em>entre de bonnes mains</em>.</h1>
+      <h1>Blanchisserie artisanale au Cap Ferret<br><em>— votre linge, entre de bonnes mains.</em></h1>
       <p class="hero-lede">
         Blanchisserie artisanale au cœur du Cap Ferret. Pressing soigné, location de linge de maison, service dédié aux professionnels du tourisme — le soin du linge, l'élégance du cap.
       </p>
       <div class="hero-ctas">
-        <a href="reservation.html" class="btn btn-primary btn-lg">Demander un devis</a>
-        <a href="services.html" class="btn btn-outline btn-lg">Découvrir nos services</a>
+        <a href="/reservation" class="btn btn-primary btn-lg">Demander un devis</a>
+        <a href="/services" class="btn btn-outline btn-lg">Découvrir nos services</a>
       </div>
     </div>
   </section>
@@ -177,21 +223,21 @@
           <div class="service-icon" aria-hidden="true">B</div>
           <h3>Blanchisserie</h3>
           <p>Lavage, séchage, repassage et pliage soigné. Linge de lit, de bain, de table ou vêtements du quotidien, traités nominativement et rendus impeccables.</p>
-          <a href="services.html#blanchisserie" class="link-arrow">En savoir plus →</a>
+          <a href="/services#blanchisserie" class="link-arrow">En savoir plus →</a>
         </article>
 
         <article class="service-card reveal">
           <div class="service-icon" aria-hidden="true">P</div>
           <h3>Pressing</h3>
           <p>Costumes, robes, manteaux, pièces d'exception : nos partenaires spécialisés prennent le relai pour un nettoyage à sec confié à des mains expertes.</p>
-          <a href="services.html#pressing" class="link-arrow">En savoir plus →</a>
+          <a href="/services#pressing" class="link-arrow">En savoir plus →</a>
         </article>
 
         <article class="service-card reveal">
           <div class="service-icon" aria-hidden="true">L</div>
           <h3>Location de linge</h3>
           <p>Draps, serviettes, nappes, housses : équipez votre résidence secondaire, votre location saisonnière ou votre événement sans compromis sur la qualité.</p>
-          <a href="services.html#location" class="link-arrow">En savoir plus →</a>
+          <a href="/services#location" class="link-arrow">En savoir plus →</a>
         </article>
       </div>
     </div>
@@ -206,7 +252,7 @@
           <h2>Un soin sur-mesure,<br>une relation de confiance.</h2>
           <p>Parce que le linge raconte le quotidien, nous le traitons pièce par pièce, sans automatisme industriel. Chaque article est identifié, contrôlé, et rendu dans l'état qu'il mérite — impeccable.</p>
           <p>Particuliers, résidents permanents, professionnels du tourisme : tous trouvent chez nous un interlocuteur unique, des délais tenus et une exigence intacte, saison après saison.</p>
-          <a href="a-propos.html" class="link-arrow mt-2">Découvrir notre maison →</a>
+          <a href="/a-propos" class="link-arrow mt-2">Découvrir notre maison →</a>
         </div>
         <div class="alt-visual alt-visual--photo">
           <img src="assets/img/photos/linge-plie-bois-1200.webp"
@@ -231,7 +277,7 @@
         <h2>Hôtels, restaurants, conciergeries :<br>un partenaire linge à votre mesure.</h2>
         <p>Compte dédié, suivi nominatif, facturation mensuelle. Nous vous accompagnons toute l'année et nous montons en charge sans faillir en pleine saison.</p>
       </div>
-      <a href="portail-pro.html" class="btn btn-sand btn-lg">Accéder à mon compte</a>
+      <a href="/portail-pro" class="btn btn-sand btn-lg">Accéder à mon compte</a>
     </div>
   </section>
 
@@ -270,19 +316,21 @@
         <h2>Parlons de votre projet.</h2>
         <p>Un devis, une question, un volume particulier ? Nous vous répondons sous 24 h ouvrées.</p>
         <div class="hero-ctas" style="justify-content:center; margin-top:2rem;">
-          <a href="reservation.html" class="btn btn-primary btn-lg">Demander un devis</a>
-          <a href="contact.html" class="btn btn-outline btn-lg">Nous contacter</a>
+          <a href="/reservation" class="btn btn-primary btn-lg">Demander un devis</a>
+          <a href="/contact" class="btn btn-outline btn-lg">Nous contacter</a>
         </div>
       </div>
     </div>
   </section>
+  </main>
+
 
   <!-- ═══ FOOTER ═══ -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html" class="brand">
+          <a href="/" class="brand">
             <img class="brand-mark brand-mark--img" src="assets/img/logo-mp.svg" alt="" aria-hidden="true" width="44" height="44">
             <span>Maison Paliquey</span>
           </a>
@@ -292,20 +340,20 @@
         <div class="footer-col">
           <h4>Services</h4>
           <ul>
-            <li><a href="services.html#blanchisserie">Blanchisserie</a></li>
-            <li><a href="services.html#pressing">Pressing</a></li>
-            <li><a href="services.html#location">Location de linge</a></li>
-            <li><a href="portail-pro.html">Espace Pro</a></li>
+            <li><a href="/services#blanchisserie">Blanchisserie</a></li>
+            <li><a href="/services#pressing">Pressing</a></li>
+            <li><a href="/services#location">Location de linge</a></li>
+            <li><a href="/portail-pro">Espace Pro</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
           <h4>Maison</h4>
           <ul>
-            <li><a href="a-propos.html">Notre maison</a></li>
-            <li><a href="tarifs.html">Tarifs</a></li>
-            <li><a href="reservation.html">Réservation</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="/a-propos">Notre maison</a></li>
+            <li><a href="/tarifs">Tarifs</a></li>
+            <li><a href="/reservation">Réservation</a></li>
+            <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
 
@@ -322,8 +370,8 @@
       <div class="footer-bottom">
         <div>© <span data-year>2026</span> Maison Paliquey — SAS LAVOK · Tous droits réservés</div>
         <div class="legal-links">
-          <a href="mentions-legales.html">Mentions légales</a>
-          <a href="politique-confidentialite.html">Confidentialité</a>
+          <a href="/mentions-legales">Mentions légales</a>
+          <a href="/politique-confidentialite">Confidentialité</a>
           <a href="https://app.maisonpaliquey.fr" class="team-link">Accès équipe —</a>
         </div>
       </div>

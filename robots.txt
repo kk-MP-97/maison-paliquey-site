@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /portail-pro.html
+Disallow: /portail-pro
 
 Sitemap: https://www.maisonpaliquey.fr/sitemap.xml
