@@ -1028,3 +1028,1187 @@ select.form-control { appearance: none; background-image: url("data:image/svg+xm
   object-fit: contain;
   display: block;
 }
+
+
+/* =========================================================================
+   v1.0.5 — REFONTE PAGE TARIFS
+   Architecture : Hero → Simulateur → Forfaits → Kits → À la pièce → FAQ
+   ========================================================================= */
+
+/* ── Quick-jump nav (sous le hero, sticky-ish) ───────────────────────── */
+.tarifs-quicknav {
+  background: var(--mp-ivory);
+  border-bottom: 1px solid var(--mp-light);
+  padding: 0.75rem 0;
+  position: sticky;
+  top: 64px;
+  z-index: 50;
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  background: rgba(244, 239, 232, 0.92);
+}
+.tarifs-quicknav-inner {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+.tarifs-quicknav-inner::-webkit-scrollbar { display: none; }
+.tarifs-quicknav a {
+  flex-shrink: 0;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--mp-navy);
+  background: var(--mp-white);
+  border: 1px solid var(--mp-light);
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.tarifs-quicknav a:hover {
+  border-color: var(--mp-sand);
+  background: var(--mp-sand);
+  color: var(--mp-navy);
+}
+
+/* ── Section : SIMULATEUR (placeholder en wireframe, opérationnel PHASE 2) ── */
+.simulator-section {
+  background: linear-gradient(180deg, var(--mp-ivory) 0%, var(--mp-white) 100%);
+  padding: 3.5rem 0;
+}
+.simulator-card {
+  background: var(--mp-white);
+  border: 1px solid var(--mp-light);
+  border-top: 4px solid var(--mp-sand);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-card);
+  max-width: 920px;
+  margin: 0 auto;
+}
+@media (max-width: 720px) { .simulator-card { padding: 1.5rem 1.25rem; } }
+.simulator-card .eyebrow { color: var(--mp-sand); }
+.simulator-card h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  margin: 0.5rem 0 0.75rem;
+  letter-spacing: -0.02em;
+}
+.simulator-card .lede {
+  color: var(--mp-gray);
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  max-width: 620px;
+}
+
+/* Toggle B2C / B2B */
+.simu-toggle {
+  display: inline-flex;
+  background: var(--mp-ivory);
+  border-radius: var(--radius-pill);
+  padding: 4px;
+  margin-bottom: 1.75rem;
+  gap: 4px;
+}
+.simu-toggle button {
+  background: transparent;
+  border: none;
+  padding: 0.55rem 1.4rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--mp-gray);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.simu-toggle button[aria-pressed="true"] {
+  background: var(--mp-navy);
+  color: var(--mp-white);
+}
+
+/* ── Simulateur : tabs catégories ────────────────────────── */
+.simu-tabs {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.simu-tabs::-webkit-scrollbar { display: none; }
+.simu-tabs button {
+  flex-shrink: 0;
+  padding: 0.55rem 1rem;
+  background: var(--mp-white);
+  color: var(--mp-navy);
+  border: 1px solid var(--mp-light);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.simu-tabs button:hover {
+  border-color: var(--mp-sand);
+  background: var(--mp-ivory);
+}
+.simu-tabs button[aria-pressed="true"] {
+  background: var(--mp-navy);
+  color: var(--mp-white);
+  border-color: var(--mp-navy);
+}
+
+/* ── Simulateur : panneau articles avec stepper ──────────── */
+.simu-panel {
+  background: var(--mp-ivory);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  min-height: 200px;
+}
+.simu-loading {
+  text-align: center;
+  color: var(--mp-gray);
+  padding: 3rem 0;
+  font-style: italic;
+}
+.simu-articles { display: flex; flex-direction: column; gap: 0.5rem; }
+.simu-article {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.6rem 0.85rem;
+  background: var(--mp-white);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition);
+}
+.simu-article.is-active {
+  border-color: var(--mp-sand);
+  background: rgba(196, 168, 130, 0.06);
+}
+.simu-article-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.simu-article-info .nom {
+  color: var(--mp-navy);
+  font-weight: 500;
+  font-size: 0.92rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.simu-article-info .prix {
+  color: var(--mp-gray);
+  font-size: 0.8rem;
+  margin-top: 1px;
+}
+.simu-article-info .prix strong {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--mp-navy);
+}
+
+/* Stepper +/- */
+.simu-stepper {
+  display: flex;
+  align-items: center;
+  background: var(--mp-white);
+  border: 1px solid var(--mp-light);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+.simu-stepper button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--mp-navy);
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.simu-stepper button:hover:not(:disabled) {
+  background: var(--mp-ivory);
+}
+.simu-stepper button:disabled {
+  color: var(--mp-light);
+  cursor: not-allowed;
+}
+.simu-stepper input,
+.simu-stepper output {
+  width: 40px;
+  text-align: center;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--mp-navy);
+  background: transparent;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  min-height: 32px;
+  line-height: 32px;
+  display: inline-block;
+}
+.simu-stepper input::-webkit-outer-spin-button,
+.simu-stepper input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.simu-line-total {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--mp-navy);
+  min-width: 60px;
+  text-align: right;
+}
+.simu-line-total.is-empty { color: var(--mp-gray); font-weight: 400; opacity: 0.4; }
+
+/* ── Simulateur : récap (accordéon) ──────────────────────── */
+.simu-recap-toggle {
+  background: var(--mp-white);
+  border: 1px solid var(--mp-light);
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+.simu-recap-toggle[open] { border-color: var(--mp-sand); }
+.simu-recap-toggle summary {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 1.25rem;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.92rem;
+  color: var(--mp-navy);
+  font-weight: 500;
+}
+.simu-recap-toggle summary::-webkit-details-marker { display: none; }
+.simu-recap-toggle summary::after {
+  content: "+";
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--mp-sand);
+  line-height: 1;
+  margin-left: 0.5rem;
+}
+.simu-recap-toggle[open] summary::after { content: "−"; }
+.simu-recap-count {
+  margin-left: auto;
+  margin-right: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--mp-gray);
+  background: var(--mp-ivory);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+  font-weight: 500;
+}
+.simu-recap {
+  border-top: 1px solid var(--mp-light);
+  padding: 0.75rem 1.25rem 1rem;
+}
+.simu-recap-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.simu-recap-list li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid rgba(229, 221, 211, 0.5);
+  gap: 1rem;
+}
+.simu-recap-list li:last-child { border-bottom: none; }
+.simu-recap-list .ligne-nom { color: var(--mp-navy); }
+.simu-recap-list .ligne-nom .qty {
+  color: var(--mp-gray);
+  font-size: 0.8rem;
+  margin-right: 0.4rem;
+}
+.simu-recap-list .ligne-total {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--mp-navy);
+  white-space: nowrap;
+}
+.simu-empty {
+  color: var(--mp-gray);
+  font-style: italic;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+}
+
+/* ── Simulateur : suggestion forfait (utilise .mp-banner--promo) ── */
+.simu-suggestion .eco { color: var(--mp-green); font-weight: 700; }
+
+/* ── Simulateur : total + actions ────────────────────────── */
+.simu-total-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background: var(--mp-navy);
+  color: var(--mp-white);
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+}
+.simu-total {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.simu-total .label {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(253, 250, 246, 0.7);
+}
+.simu-total .montant {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--mp-white);
+}
+.simu-total-bar .btn-ghost {
+  color: rgba(253, 250, 246, 0.78);
+  border: 1px solid rgba(253, 250, 246, 0.2);
+}
+.simu-total-bar .btn-ghost:hover { color: var(--mp-sand); border-color: var(--mp-sand); }
+
+.simu-actions {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr;
+  margin-bottom: 1rem;
+}
+@media (min-width: 600px) {
+  .simu-actions { grid-template-columns: 1fr 1fr 1.4fr; }
+}
+
+.simu-disclaimer {
+  font-size: 0.78rem;
+  color: var(--mp-gray);
+  text-align: center;
+  font-style: italic;
+  padding: 0 0.5rem;
+  line-height: 1.5;
+}
+
+/* ── Stepper kg pour Lavage au kilo (cas spécial) ────────── */
+.simu-article--kilo .simu-stepper input {
+  width: 56px;
+}
+
+/* ═════════════════════════════════════════════════════════════
+   v1.0.14 — Système unifié de bandeaux d'information
+   3 variantes : info (sand neutre) · promo (vert, économies) · accent (sand gradient)
+   ═════════════════════════════════════════════════════════════ */
+.mp-banner {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  padding: 0.9rem 1.15rem;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  margin-bottom: 1rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--mp-navy);
+}
+@media (min-width: 600px) {
+  .mp-banner {
+    align-items: center;
+  }
+  .mp-banner--with-cta {
+    justify-content: space-between;
+  }
+}
+.mp-banner > .mp-icon {
+  flex-shrink: 0;
+}
+.mp-banner > div {
+  flex: 1;
+}
+.mp-banner strong {
+  display: inline;
+  color: var(--mp-navy);
+  font-weight: 600;
+}
+.mp-banner span {
+  color: var(--mp-gray);
+}
+
+/* Variante INFO — neutre/sand léger, pour notes contextuelles */
+.mp-banner--info {
+  background: rgba(196, 168, 130, 0.10);
+  border-color: rgba(196, 168, 130, 0.35);
+  border-left: 3px solid var(--mp-sand);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.mp-banner--info .mp-icon { color: var(--mp-sand); }
+
+/* Variante PROMO — vert (économies actives, location au mois) */
+.mp-banner--promo {
+  background: linear-gradient(180deg, rgba(45, 106, 79, 0.12) 0%, rgba(45, 106, 79, 0.04) 100%);
+  border-color: rgba(45, 106, 79, 0.35);
+}
+.mp-banner--promo .mp-icon { color: var(--mp-green); }
+.mp-banner--promo strong { color: var(--mp-green); font-weight: 700; }
+.mp-banner--promo .eco-amount,
+.mp-banner--promo .eco { color: var(--mp-green); font-weight: 700; }
+
+/* Variante ACCENT — sand gradient (valorisation, appels à action) */
+.mp-banner--accent {
+  background: linear-gradient(180deg, rgba(196, 168, 130, 0.16) 0%, rgba(196, 168, 130, 0.04) 100%);
+  border-color: var(--mp-sand);
+  flex-direction: column;
+  gap: 0.85rem;
+}
+@media (min-width: 600px) {
+  .mp-banner--accent { flex-direction: row; align-items: center; justify-content: space-between; }
+}
+.mp-banner--accent .mp-icon { color: var(--mp-sand); }
+.mp-banner--accent .btn { flex-shrink: 0; }
+
+/* ── Icônes Maison Paliquey (sprite SVG inline) ──────────── */
+.mp-icon {
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: -0.18em;
+  flex-shrink: 0;
+  color: currentColor;
+  display: inline-block;
+}
+.mp-icon--lg { width: 1.4em; height: 1.4em; vertical-align: -0.3em; }
+.mp-icon--xl { width: 2rem; height: 2rem; vertical-align: middle; }
+.tarifs-quicknav a .mp-icon,
+.simu-tabs button .mp-icon,
+.simu-toggle button .mp-icon { margin-right: 0.4em; }
+
+/* Variante avec icône en accent sand (pour bandeaux/highlights) */
+.mp-icon--accent { color: var(--mp-sand); }
+
+/* (Anciennes classes simu-tab-note, simu-promo-banner, simu-luxe-banner,
+    simu-b2b-prefer, kits-promo-info, reservation-prefill-banner remplacées
+    par le système .mp-banner --info|--promo|--accent ci-dessus.) */
+
+/* ── Sélecteur de gamme (Confort / Premium / Luxe) ───────── */
+.simu-gamme-selector {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+@media (min-width: 600px) {
+  .simu-gamme-selector { grid-template-columns: repeat(3, 1fr); }
+}
+.simu-gamme {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0.85rem 1rem;
+  background: var(--mp-white);
+  border: 1.5px solid var(--mp-light);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-body);
+  transition: all var(--transition);
+}
+.simu-gamme:hover { border-color: var(--mp-sand); background: var(--mp-ivory); }
+.simu-gamme.is-active {
+  border-color: var(--mp-navy);
+  background: var(--mp-navy);
+  color: var(--mp-white);
+}
+.simu-gamme .g-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: inherit;
+}
+.simu-gamme .g-desc {
+  font-size: 0.78rem;
+  color: var(--mp-gray);
+  line-height: 1.3;
+}
+.simu-gamme.is-active .g-desc { color: rgba(253, 250, 246, 0.78); }
+.simu-gamme--luxe .g-label { color: var(--mp-sand); }
+.simu-gamme--luxe.is-active .g-label { color: var(--mp-sand); }
+
+/* ── Sélecteur de durée location (avec promo "1 sem offerte / mois") ─ */
+.simu-duree-section {
+  margin-bottom: 1rem;
+}
+.simu-duree-section[aria-disabled="true"] { opacity: 0.4; pointer-events: none; }
+.simu-duree-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mp-gray);
+  margin-bottom: 0.5rem;
+}
+.simu-duree-selector {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.4rem;
+}
+@media (min-width: 600px) {
+  .simu-duree-selector { grid-template-columns: repeat(5, 1fr); }
+}
+.simu-duree {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 0.6rem 0.5rem;
+  background: var(--mp-white);
+  border: 1.5px solid var(--mp-light);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-align: center;
+  font-family: var(--font-body);
+  position: relative;
+  transition: all var(--transition);
+}
+.simu-duree:hover { border-color: var(--mp-sand); background: var(--mp-ivory); }
+.simu-duree.is-active {
+  border-color: var(--mp-navy);
+  background: var(--mp-navy);
+  color: var(--mp-white);
+}
+.simu-duree .d-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: inherit;
+}
+.simu-duree .d-sub {
+  font-size: 0.72rem;
+  color: var(--mp-gray);
+}
+.simu-duree.is-active .d-sub { color: rgba(253, 250, 246, 0.7); }
+.simu-duree-promo {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--mp-sand);
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.simu-duree.is-active .simu-duree-promo { color: var(--mp-sand); }
+.simu-duree--custom .d-label { font-size: 1.3rem; line-height: 1; font-family: var(--font-display); font-weight: 400; }
+
+.simu-duree-custom-input {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.85rem;
+  margin-top: 0.5rem;
+  background: var(--mp-ivory);
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  flex-wrap: wrap;
+}
+.simu-duree-custom-input label {
+  color: var(--mp-navy);
+  font-weight: 500;
+}
+.simu-duree-custom-input input {
+  width: 70px;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--mp-light);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+  background: var(--mp-white);
+  color: var(--mp-navy);
+}
+.simu-duree-custom-input input:focus {
+  outline: none;
+  border-color: var(--mp-sand);
+  box-shadow: 0 0 0 3px rgba(196,168,130,0.18);
+}
+.simu-duree-eco {
+  color: var(--mp-green);
+  font-weight: 600;
+  font-size: 0.86rem;
+}
+
+/* (Bandeau .simu-promo-banner remplacé par .mp-banner--promo ci-dessus.) */
+
+/* Pastille "× X sem" dans le total ligne quand durée > 1 */
+.simu-line-total .line-mult {
+  display: inline-block;
+  font-size: 0.7rem;
+  color: var(--mp-gray);
+  background: var(--mp-ivory);
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-weight: 500;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+/* Prix avec mention "Confort X€" en barré quand Premium actif */
+.simu-article-info .prix-old {
+  font-size: 0.74rem;
+  color: var(--mp-gray);
+  text-decoration: line-through;
+  margin-left: 0.4rem;
+  opacity: 0.7;
+}
+.simu-article-info .prix-devis {
+  font-style: italic;
+  color: var(--mp-sand);
+  font-weight: 500;
+}
+
+/* Steppers désactivés en Luxe */
+.simu-articles.is-luxe .simu-stepper { opacity: 0.4; }
+.simu-articles.is-luxe .simu-line-total--devis {
+  font-style: italic;
+  color: var(--mp-sand);
+  font-weight: 500;
+}
+
+/* (Bandeau .simu-luxe-banner remplacé par .mp-banner--accent ci-dessus.) */
+
+/* (Bandeau .simu-b2b-intro remplacé par .mp-banner--info ci-dessus.) */
+
+/* Total bar B2B = 3 colonnes (hebdo, mensuel, reset) */
+.simu-total-bar--pro {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+@media (min-width: 600px) {
+  .simu-total-bar--pro {
+    grid-template-columns: 1fr 1fr auto;
+  }
+}
+.simu-total-bar--pro .simu-total .montant { font-size: 1.6rem; }
+.simu-total--mensuel .montant {
+  color: var(--mp-sand) !important;
+}
+
+/* (Bandeau .simu-b2b-prefer remplacé par .mp-banner--accent ci-dessus.) */
+
+/* Placeholder « bientôt » dans le wireframe — disparaît en PHASE 2 */
+.simu-placeholder {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(196,168,130,0.08),
+    rgba(196,168,130,0.08) 12px,
+    transparent 12px,
+    transparent 24px
+  );
+  border: 2px dashed var(--mp-sand);
+  border-radius: var(--radius-md);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  color: var(--mp-navy);
+}
+.simu-placeholder .badge-wip {
+  display: inline-block;
+  background: var(--mp-sand);
+  color: var(--mp-navy);
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.simu-placeholder p { color: var(--mp-gray); max-width: 480px; margin: 0.5rem auto 0; }
+
+/* ── Section : FORFAITS (cards verticales enrichies) ─────────────────── */
+.section-forfaits { padding: 4rem 0; }
+.section-intro {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 2.5rem;
+}
+.section-intro .eyebrow { color: var(--mp-sand); }
+.section-intro h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  letter-spacing: -0.02em;
+  margin: 0.5rem 0 0.75rem;
+}
+.section-intro p { color: var(--mp-gray); font-size: 1.02rem; }
+
+.forfaits-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) {
+  .forfaits-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1000px) {
+  .forfaits-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.forfait-card {
+  position: relative;
+  background: var(--mp-white);
+  border: 1px solid var(--mp-light);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: all var(--transition);
+}
+.forfait-card:hover {
+  border-color: var(--mp-sand);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+}
+.forfait-card--featured {
+  border-color: var(--mp-sand);
+  border-top: 4px solid var(--mp-sand);
+  background: linear-gradient(180deg, rgba(196,168,130,0.05) 0%, var(--mp-white) 30%);
+}
+.forfait-badge {
+  position: absolute;
+  top: -10px;
+  right: 1.25rem;
+  background: var(--mp-sand);
+  color: var(--mp-navy);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.forfait-card h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--mp-navy);
+  margin-bottom: 0.25rem;
+}
+.forfait-card .forfait-note {
+  color: var(--mp-gray);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.forfait-compo {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.forfait-compo li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--mp-navy);
+}
+.forfait-compo li::before {
+  content: "•";
+  color: var(--mp-sand);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.forfait-compo .qty {
+  font-weight: 600;
+  color: var(--mp-navy);
+  margin-left: auto;
+  font-size: 0.82rem;
+  background: var(--mp-ivory);
+  padding: 0.1rem 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+.forfait-prix {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-top: 1px solid var(--mp-light);
+  padding-top: 1rem;
+  margin-top: auto;
+}
+.forfait-prix .label {
+  font-size: 0.8rem;
+  color: var(--mp-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.forfait-prix .montant {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--mp-navy);
+  line-height: 1;
+}
+.forfait-prix .unite {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--mp-gray);
+}
+.forfait-econo {
+  background: rgba(45, 106, 79, 0.08);
+  color: var(--mp-green);
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 0.5rem 0.8rem;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  border: 1px solid rgba(45, 106, 79, 0.2);
+}
+.forfait-econo strong { font-weight: 700; }
+/* Variante neutre — quand pas d'économie significative à afficher */
+.forfait-econo--neutral {
+  background: rgba(196, 168, 130, 0.08);
+  color: var(--mp-navy);
+  border-color: rgba(196, 168, 130, 0.25);
+}
+
+/* ── Section : KITS LOCATION (cards verticales avec gammes) ──────────── */
+.section-kits {
+  background: var(--mp-ivory);
+  padding: 4rem 0;
+}
+.kits-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) {
+  .kits-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1100px) {
+  .kits-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.kit-card {
+  background: var(--mp-white);
+  border: 1px solid var(--mp-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition);
+}
+.kit-card:hover {
+  border-color: var(--mp-sand);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+}
+.kit-card--hero {
+  border-top: 4px solid var(--mp-sand);
+}
+.kit-header {
+  padding: 1.5rem 1.5rem 1.25rem;
+  background: var(--mp-navy);
+  color: var(--mp-white);
+}
+.kit-header h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.4rem;
+  color: var(--mp-white);
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.01em;
+}
+.kit-header .kit-tagline {
+  color: rgba(253, 250, 246, 0.78);
+  font-size: 0.85rem;
+}
+.kit-compo {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--mp-light);
+}
+.kit-compo h4 {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mp-sand);
+  margin-bottom: 0.6rem;
+}
+.kit-compo ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.35rem; }
+.kit-compo li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--mp-navy);
+}
+.kit-compo li .qty {
+  color: var(--mp-gray);
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.kit-gammes {
+  padding: 1.25rem 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+.kit-gamme {
+  text-align: center;
+  padding: 0.85rem 0.5rem;
+  border-radius: var(--radius-md);
+  background: var(--mp-ivory);
+  transition: all var(--transition);
+}
+.kit-gamme:hover { background: var(--mp-light); }
+.kit-gamme .label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mp-gray);
+  margin-bottom: 0.25rem;
+}
+.kit-gamme .prix {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--mp-navy);
+  line-height: 1.1;
+}
+.kit-gamme .unite {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  color: var(--mp-gray);
+  font-weight: 400;
+  margin-top: 2px;
+}
+.kit-gamme--devis .prix {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--mp-gray);
+  font-weight: 400;
+}
+
+.gamme-legend {
+  max-width: 820px;
+  margin: 2.5rem auto 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  background: var(--mp-white);
+  border: 1px solid var(--mp-light);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+}
+@media (min-width: 720px) {
+  .gamme-legend { grid-template-columns: repeat(3, 1fr); }
+}
+.gamme-legend-item h5 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  color: var(--mp-navy);
+}
+.gamme-legend-item p {
+  font-size: 0.83rem;
+  color: var(--mp-gray);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* (Bandeau .reservation-prefill-banner remplacé par .mp-banner--accent ci-dessus.) */
+
+/* (Bandeau .kits-promo-info remplacé par .mp-banner--accent ci-dessus.) */
+
+/* ── Section : À LA PIÈCE (accordéon + recherche) ─────────────────────── */
+.section-piece {
+  background: var(--mp-white);
+  padding: 4rem 0;
+}
+.piece-search {
+  max-width: 540px;
+  margin: 0 auto 2rem;
+  position: relative;
+}
+.piece-search input {
+  width: 100%;
+  padding: 0.85rem 1rem 0.85rem 2.75rem;
+  font-size: 0.95rem;
+  border: 1px solid var(--mp-light);
+  border-radius: var(--radius-pill);
+  background: var(--mp-white);
+  color: var(--mp-navy);
+  transition: all var(--transition);
+  min-height: 48px;
+}
+.piece-search input:focus {
+  outline: none;
+  border-color: var(--mp-sand);
+  box-shadow: 0 0 0 3px rgba(196,168,130,0.18);
+}
+.piece-search::before {
+  content: "🔍";
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.piece-accordion {
+  max-width: 920px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.piece-cat {
+  background: var(--mp-white);
+  border: 1px solid var(--mp-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+.piece-cat[open] { border-color: var(--mp-sand); }
+.piece-cat summary {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 1.5rem;
+  cursor: pointer;
+  user-select: none;
+  background: var(--mp-white);
+  transition: background var(--transition);
+}
+.piece-cat summary:hover { background: var(--mp-ivory); }
+.piece-cat summary::-webkit-details-marker { display: none; }
+.piece-cat summary::after {
+  content: "+";
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--mp-sand);
+  line-height: 1;
+  transition: transform var(--transition);
+}
+.piece-cat[open] summary::after { transform: rotate(45deg); }
+.piece-cat-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.piece-cat-title strong {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.15rem;
+  color: var(--mp-navy);
+}
+.piece-cat-title span {
+  font-size: 0.8rem;
+  color: var(--mp-gray);
+}
+
+.piece-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--mp-light);
+}
+.piece-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid rgba(229, 221, 211, 0.5);
+  gap: 1rem;
+  transition: background var(--transition);
+}
+.piece-list li:last-child { border-bottom: none; }
+.piece-list li:hover { background: rgba(244, 239, 232, 0.5); }
+.piece-list li.is-hidden { display: none; }
+.piece-list .nom {
+  color: var(--mp-navy);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+.piece-list .prix {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--mp-navy);
+  white-space: nowrap;
+}
+.piece-list .unite {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--mp-gray);
+  font-weight: 400;
+}
+
+/* ── Section : SUPPLÉMENTS (compact) ─────────────────────────────────── */
+.section-supplements {
+  background: var(--mp-ivory);
+  padding: 3rem 0;
+}
+.supplements-card {
+  background: var(--mp-white);
+  border: 1px solid var(--mp-light);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  max-width: 820px;
+  margin: 0 auto;
+}
+.supplements-list { list-style: none; padding: 0; margin: 0; }
+.supplements-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--mp-light);
+}
+.supplements-list li:last-child { border-bottom: none; }
+.supplements-list .nom { color: var(--mp-navy); font-size: 0.92rem; font-weight: 500; }
+.supplements-list .nom small { display: block; color: var(--mp-gray); font-size: 0.78rem; font-weight: 400; margin-top: 2px; line-height: 1.4; }
+.supplements-list .prix { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--mp-navy); white-space: nowrap; }
+
+/* ── FAQ tarifs (réutilise .faq-* existants) ─────────────────────────── */
+.section-faq-tarifs { padding: 4rem 0; background: var(--mp-white); }

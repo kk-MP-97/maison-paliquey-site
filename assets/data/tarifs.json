@@ -1,0 +1,1347 @@
+{
+  "generated_at": "2026-05-10T20:12:27.149Z",
+  "source": "app-interne/src/lib/seedTarifs.js",
+  "categories": {
+    "blanchisserie_linge_maison": {
+      "label": "Blanchisserie — Linge de maison",
+      "ordre": 1
+    },
+    "pressing_vetement": {
+      "label": "Pressing — Vêtements",
+      "ordre": 2
+    },
+    "forfait": {
+      "label": "Forfaits",
+      "ordre": 3
+    },
+    "location": {
+      "label": "Location à la pièce (semaine)",
+      "ordre": 4
+    },
+    "kit": {
+      "label": "Kits location tout-inclus",
+      "ordre": 5
+    }
+  },
+  "sous_categories": {
+    "literie": {
+      "label": "Literie",
+      "ordre": 1
+    },
+    "bain": {
+      "label": "Bain & serviettes",
+      "ordre": 2
+    },
+    "table": {
+      "label": "Table, nappes & torchons",
+      "ordre": 3
+    },
+    "rideaux": {
+      "label": "Rideaux, voilages & tapis",
+      "ordre": 4
+    }
+  },
+  "tarifs": [
+    {
+      "id": "drap_plat_drap_housse_1_pers",
+      "nom": "Drap plat / drap housse (1 pers)",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 4.7,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 10,
+      "composition": null,
+      "is_top": true,
+      "featured": null
+    },
+    {
+      "id": "drap_housse_double",
+      "nom": "Drap housse double",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 9,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 11,
+      "composition": null,
+      "is_top": true,
+      "featured": null
+    },
+    {
+      "id": "drap_lin_metis",
+      "nom": "Drap lin métis",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 6,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 12,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "housse_couette_coton_90_120",
+      "nom": "Housse couette coton 90/120",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 7.5,
+      "prix_premium": null,
+      "prix_ancien": 8.5,
+      "notes": "Ajusté 2026-05 — Karl (-1€ vs 2024, calage caisse 7,50€)",
+      "ordre": 20,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "housse_couette_coton_140_180",
+      "nom": "Housse couette coton 140/180",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 10.5,
+      "prix_premium": null,
+      "prix_ancien": 9.7,
+      "notes": "Ajusté 2026-05 — Karl (+0,80€ vs 2024, DLP 14€)",
+      "ordre": 21,
+      "composition": null,
+      "is_top": true,
+      "featured": null
+    },
+    {
+      "id": "housse_couette_lin_90_120",
+      "nom": "Housse couette lin 90/120",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 10,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 22,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "housse_couette_lin_140_180",
+      "nom": "Housse couette lin 140/180",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 12,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 23,
+      "composition": null,
+      "is_top": true,
+      "featured": null
+    },
+    {
+      "id": "housse_couette_xxl_caravan",
+      "nom": "Housse couette XXL / caravan",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 12,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 24,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "taie_d_oreiller",
+      "nom": "Taie d'oreiller",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 2.2,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 30,
+      "composition": null,
+      "is_top": true,
+      "featured": null
+    },
+    {
+      "id": "protege_oreiller",
+      "nom": "Protège-oreiller",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 3.6,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 31,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "enveloppe_taie_dessus_de_lit",
+      "nom": "Enveloppe taie dessus de lit",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 2.5,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 32,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "oreiller_synthetique",
+      "nom": "Oreiller synthétique",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 8,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 33,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "oreiller_plume",
+      "nom": "Oreiller plume",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 12,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 34,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "traversin",
+      "nom": "Traversin",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 2.5,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 35,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "couette_synthetique_1_personne",
+      "nom": "Couette synthétique 1 personne",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 20,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 40,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "couette_synthetique_2_personnes",
+      "nom": "Couette synthétique 2 personnes",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 24,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 41,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "couette_duvet_plume",
+      "nom": "Couette duvet (plume)",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 36,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 42,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "edredon",
+      "nom": "Édredon",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 33,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 43,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "couverture_synthetique",
+      "nom": "Couverture synthétique",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 19,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 44,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "couverture_laine",
+      "nom": "Couverture laine",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 23,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 45,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "dessus_de_lit_simple",
+      "nom": "Dessus de lit simple",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 15,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 46,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "dessus_de_lit_double",
+      "nom": "Dessus de lit double",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 23,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 47,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "plaid_petite_taille",
+      "nom": "Plaid petite taille",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 9,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 48,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "plaid_grande_taille",
+      "nom": "Plaid grande taille",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 15,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 49,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "alese_simple",
+      "nom": "Alèse simple",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 6.3,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 50,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "alese_plastifiee",
+      "nom": "Alèse plastifiée",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 9,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 51,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "sac_de_couchage_synthetique",
+      "nom": "Sac de couchage synthétique",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 15,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 52,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "sac_de_couchage_plume",
+      "nom": "Sac de couchage plume",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "literie",
+      "unite": "piece",
+      "prix_ttc": 25,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 53,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "gant_de_toilette",
+      "nom": "Gant de toilette",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "bain",
+      "unite": "piece",
+      "prix_ttc": 1,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 60,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "serviette_de_toilette",
+      "nom": "Serviette de toilette",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "bain",
+      "unite": "piece",
+      "prix_ttc": 3.8,
+      "prix_premium": null,
+      "prix_ancien": 2.5,
+      "notes": "Ajusté 2026 (+1,30€, DLP 4,80€)",
+      "ordre": 61,
+      "composition": null,
+      "is_top": true,
+      "featured": null
+    },
+    {
+      "id": "drap_de_bain",
+      "nom": "Drap de bain",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "bain",
+      "unite": "piece",
+      "prix_ttc": 5.5,
+      "prix_premium": null,
+      "prix_ancien": 3.5,
+      "notes": "Ajusté 2026 (+2€, DLP 7€, alignement progressif)",
+      "ordre": 62,
+      "composition": null,
+      "is_top": true,
+      "featured": null
+    },
+    {
+      "id": "drap_de_douche",
+      "nom": "Drap de douche",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "bain",
+      "unite": "piece",
+      "prix_ttc": 5,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 63,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "drap_de_plage_piscine_spa",
+      "nom": "Drap de plage / piscine / spa",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "bain",
+      "unite": "piece",
+      "prix_ttc": 6.5,
+      "prix_premium": null,
+      "prix_ancien": 7.5,
+      "notes": "Ajusté 2026-05 — Karl (-1€, recalage Cap Ferret estival)",
+      "ordre": 64,
+      "composition": null,
+      "is_top": true,
+      "featured": null
+    },
+    {
+      "id": "foutta",
+      "nom": "Foutta",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "bain",
+      "unite": "piece",
+      "prix_ttc": 6.5,
+      "prix_premium": null,
+      "prix_ancien": 5,
+      "notes": "Ajusté 2026-05 — Karl (+1,50€ vs 2024, DLP 6€)",
+      "ordre": 65,
+      "composition": null,
+      "is_top": true,
+      "featured": null
+    },
+    {
+      "id": "tapis_de_bain",
+      "nom": "Tapis de bain",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "bain",
+      "unite": "piece",
+      "prix_ttc": 3.5,
+      "prix_premium": null,
+      "prix_ancien": 3,
+      "notes": "Ajusté 2026 (+0,50€, DLP 3,50€)",
+      "ordre": 66,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "robe_de_chambre_peignoir",
+      "nom": "Robe de chambre / peignoir",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "bain",
+      "unite": "piece",
+      "prix_ttc": 9.6,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 67,
+      "composition": null,
+      "is_top": true,
+      "featured": null
+    },
+    {
+      "id": "torchon",
+      "nom": "Torchon",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "table",
+      "unite": "piece",
+      "prix_ttc": 2,
+      "prix_premium": null,
+      "prix_ancien": 1.5,
+      "notes": "Ajusté 2026 (+0,50€, DLP 2€)",
+      "ordre": 70,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "serviette_de_table",
+      "nom": "Serviette de table",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "table",
+      "unite": "piece",
+      "prix_ttc": 1.6,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 71,
+      "composition": null,
+      "is_top": true,
+      "featured": null
+    },
+    {
+      "id": "nappe_petite_taille",
+      "nom": "Nappe petite taille",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "table",
+      "unite": "piece",
+      "prix_ttc": 9,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 72,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "nappe_moyenne_taille",
+      "nom": "Nappe moyenne taille",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "table",
+      "unite": "piece",
+      "prix_ttc": 14,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 73,
+      "composition": null,
+      "is_top": true,
+      "featured": null
+    },
+    {
+      "id": "nappe_grande_taille",
+      "nom": "Nappe grande taille",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "table",
+      "unite": "piece",
+      "prix_ttc": 18,
+      "prix_premium": null,
+      "prix_ancien": 16,
+      "notes": "Ajusté 2026 (+2€, DLP 20€)",
+      "ordre": 74,
+      "composition": null,
+      "is_top": true,
+      "featured": null
+    },
+    {
+      "id": "nappe_drap_metis",
+      "nom": "Nappe drap métis",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "table",
+      "unite": "piece",
+      "prix_ttc": 9,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 75,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "voilage_m",
+      "nom": "Voilage (m²)",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "rideaux",
+      "unite": "m2",
+      "prix_ttc": 7.2,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 80,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "rideau_simple_m",
+      "nom": "Rideau simple (m²)",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "rideaux",
+      "unite": "m2",
+      "prix_ttc": 11,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 81,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "rideau_double_m",
+      "nom": "Rideau double (m²)",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "rideaux",
+      "unite": "m2",
+      "prix_ttc": 14.5,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 82,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "tapis_m",
+      "nom": "Tapis (m²)",
+      "categorie": "blanchisserie_linge_maison",
+      "sous_categorie": "rideaux",
+      "unite": "m2",
+      "prix_ttc": 20,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 83,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "chemise_lavee_repassee",
+      "nom": "Chemise lavée + repassée",
+      "categorie": "pressing_vetement",
+      "sous_categorie": null,
+      "unite": "piece",
+      "prix_ttc": 8,
+      "prix_premium": null,
+      "prix_ancien": 7.5,
+      "notes": "Ajusté 2026-05 — Karl (+0,50€, calage caisse à 8€)",
+      "ordre": 10,
+      "composition": null,
+      "is_top": true,
+      "featured": null
+    },
+    {
+      "id": "pantalon",
+      "nom": "Pantalon",
+      "categorie": "pressing_vetement",
+      "sous_categorie": null,
+      "unite": "piece",
+      "prix_ttc": 8,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": "Nouveau 2026 — réf. 6€ + prime",
+      "ordre": 11,
+      "composition": null,
+      "is_top": true,
+      "featured": null
+    },
+    {
+      "id": "pull",
+      "nom": "Pull",
+      "categorie": "pressing_vetement",
+      "sous_categorie": null,
+      "unite": "piece",
+      "prix_ttc": 8,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": "Nouveau 2026 — réf. 5,90€ + prime",
+      "ordre": 12,
+      "composition": null,
+      "is_top": true,
+      "featured": null
+    },
+    {
+      "id": "robe_courte",
+      "nom": "Robe courte",
+      "categorie": "pressing_vetement",
+      "sous_categorie": null,
+      "unite": "piece",
+      "prix_ttc": 10,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": "Nouveau 2026 — réf. 7,20€ + prime",
+      "ordre": 13,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "robe_longue_de_soiree",
+      "nom": "Robe longue / de soirée",
+      "categorie": "pressing_vetement",
+      "sous_categorie": null,
+      "unite": "piece",
+      "prix_ttc": 18,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": "Nouveau 2026 — benchmark national",
+      "ordre": 14,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "veste_blazer",
+      "nom": "Veste / blazer",
+      "categorie": "pressing_vetement",
+      "sous_categorie": null,
+      "unite": "piece",
+      "prix_ttc": 13,
+      "prix_premium": null,
+      "prix_ancien": 11,
+      "notes": "Ajusté 2026-05 — Karl (+2€, prime Cap Ferret)",
+      "ordre": 15,
+      "composition": null,
+      "is_top": true,
+      "featured": null
+    },
+    {
+      "id": "blouson",
+      "nom": "Blouson",
+      "categorie": "pressing_vetement",
+      "sous_categorie": null,
+      "unite": "piece",
+      "prix_ttc": 14,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": "Nouveau 2026 — réf. 10€",
+      "ordre": 16,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "manteau_long",
+      "nom": "Manteau long",
+      "categorie": "pressing_vetement",
+      "sous_categorie": null,
+      "unite": "piece",
+      "prix_ttc": 22,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": "Nouveau 2026 — benchmark 22-27€",
+      "ordre": 17,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "costume_2_pieces",
+      "nom": "Costume 2 pièces",
+      "categorie": "pressing_vetement",
+      "sous_categorie": null,
+      "unite": "piece",
+      "prix_ttc": 22,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": "Nouveau 2026 — benchmark 18-24€",
+      "ordre": 18,
+      "composition": null,
+      "is_top": true,
+      "featured": null
+    },
+    {
+      "id": "cravate",
+      "nom": "Cravate",
+      "categorie": "pressing_vetement",
+      "sous_categorie": null,
+      "unite": "piece",
+      "prix_ttc": 5,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 19,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "forfait_lit_90_coton_blanchi_1_taie",
+      "nom": "Forfait lit 90 coton blanchi 1 taie",
+      "categorie": "forfait",
+      "sous_categorie": null,
+      "unite": "piece",
+      "prix_ttc": 15.4,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 10,
+      "composition": {
+        "items": [
+          {
+            "id": "drap_plat_drap_housse_1_pers",
+            "label": "Drap-housse ou drap plat (1 pers)",
+            "qty": 1
+          },
+          {
+            "id": "housse_couette_coton_90_120",
+            "label": "Housse couette coton 90/120",
+            "qty": 1
+          },
+          {
+            "id": "taie_d_oreiller",
+            "label": "Taie d'oreiller",
+            "qty": 1
+          }
+        ],
+        "note": "Tout en coton, traitement « blanc » (anti-taches, finition pressing)"
+      },
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "forfait_lit_90_lin_blanchi_1_taie",
+      "nom": "Forfait lit 90 lin blanchi 1 taie",
+      "categorie": "forfait",
+      "sous_categorie": null,
+      "unite": "piece",
+      "prix_ttc": 17.7,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 11,
+      "composition": {
+        "items": [
+          {
+            "id": "drap_lin_metis",
+            "label": "Drap plat lin métis",
+            "qty": 1
+          },
+          {
+            "id": "housse_couette_lin_90_120",
+            "label": "Housse couette lin 90/120",
+            "qty": 1
+          },
+          {
+            "id": "taie_d_oreiller",
+            "label": "Taie d'oreiller",
+            "qty": 1
+          }
+        ],
+        "note": "Drap plat en lin métis · housse couette en lin · sans drap-housse"
+      },
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "forfait_lit_140_180_coton_blanchi_2_taies",
+      "nom": "Forfait lit 140-180 coton blanchi 2 taies",
+      "categorie": "forfait",
+      "sous_categorie": null,
+      "unite": "piece",
+      "prix_ttc": 18.8,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 12,
+      "composition": {
+        "items": [
+          {
+            "id": "drap_housse_double",
+            "label": "Drap-housse ou drap plat (double)",
+            "qty": 1
+          },
+          {
+            "id": "housse_couette_coton_140_180",
+            "label": "Housse couette coton 140/180",
+            "qty": 1
+          },
+          {
+            "id": "taie_d_oreiller",
+            "label": "Taies d'oreiller",
+            "qty": 2
+          }
+        ],
+        "note": "Lit double · traitement « blanc » coton intégral"
+      },
+      "is_top": false,
+      "featured": {
+        "cardClass": "forfait-card--featured",
+        "badge": "Le + choisi"
+      }
+    },
+    {
+      "id": "forfait_lit_140_180_lin_blanchi_2_taies",
+      "nom": "Forfait lit 140-180 lin blanchi 2 taies",
+      "categorie": "forfait",
+      "sous_categorie": null,
+      "unite": "piece",
+      "prix_ttc": 21,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 13,
+      "composition": {
+        "items": [
+          {
+            "id": "drap_lin_metis",
+            "label": "Drap plat lin métis",
+            "qty": 1
+          },
+          {
+            "id": "housse_couette_lin_140_180",
+            "label": "Housse couette lin 140/180",
+            "qty": 1
+          },
+          {
+            "id": "taie_d_oreiller",
+            "label": "Taies d'oreiller",
+            "qty": 2
+          }
+        ],
+        "note": "Lit double · drap plat lin métis · housse couette lin · sans drap-housse"
+      },
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "machine_4_5_kg_lavee_sechee",
+      "nom": "Machine 4/5 kg lavée / séchée",
+      "categorie": "forfait",
+      "sous_categorie": null,
+      "unite": "piece",
+      "prix_ttc": 21,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 14,
+      "composition": {
+        "items": [],
+        "note": "Lavage + séchage tout-venant, sans repassage. Idéal vacances."
+      },
+      "is_top": true,
+      "featured": null
+    },
+    {
+      "id": "lavage_au_kilo_tout_venant",
+      "nom": "Lavage au kilo tout-venant",
+      "categorie": "forfait",
+      "sous_categorie": null,
+      "unite": "kg",
+      "prix_ttc": 7.5,
+      "prix_premium": null,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 15,
+      "composition": {
+        "items": [],
+        "note": "Tout-venant lavé+séché au kilo. Sans repassage."
+      },
+      "is_top": true,
+      "featured": null
+    },
+    {
+      "id": "loc_drap_housse",
+      "nom": "Drap-housse (location)",
+      "categorie": "location",
+      "sous_categorie": null,
+      "unite": "semaine",
+      "prix_ttc": 4,
+      "prix_premium": 6.5,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 10,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "loc_drap_plat",
+      "nom": "Drap plat (location)",
+      "categorie": "location",
+      "sous_categorie": null,
+      "unite": "semaine",
+      "prix_ttc": 4,
+      "prix_premium": 6.5,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 11,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "loc_housse_couette",
+      "nom": "Housse de couette (location)",
+      "categorie": "location",
+      "sous_categorie": null,
+      "unite": "semaine",
+      "prix_ttc": 6,
+      "prix_premium": 9.5,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 12,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "loc_serviette_bain",
+      "nom": "Serviette de bain (location)",
+      "categorie": "location",
+      "sous_categorie": null,
+      "unite": "semaine",
+      "prix_ttc": 2.5,
+      "prix_premium": 4.5,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 13,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "loc_drap_bain_xl",
+      "nom": "Drap de bain XL (location)",
+      "categorie": "location",
+      "sous_categorie": null,
+      "unite": "semaine",
+      "prix_ttc": 3.5,
+      "prix_premium": 6,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 14,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "loc_nappe",
+      "nom": "Nappe de table (location)",
+      "categorie": "location",
+      "sous_categorie": null,
+      "unite": "semaine",
+      "prix_ttc": 8,
+      "prix_premium": 13,
+      "prix_ancien": null,
+      "notes": "À partir de",
+      "ordre": 15,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "loc_serviettes_table_x10",
+      "nom": "Serviettes de table x10 (location)",
+      "categorie": "location",
+      "sous_categorie": null,
+      "unite": "semaine",
+      "prix_ttc": 6,
+      "prix_premium": 10,
+      "prix_ancien": null,
+      "notes": null,
+      "ordre": 16,
+      "composition": null,
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "kit_lit_1p",
+      "nom": "Kit Lit 1 place",
+      "categorie": "kit",
+      "sous_categorie": null,
+      "unite": "semaine",
+      "prix_ttc": 22,
+      "prix_premium": 36,
+      "prix_ancien": 18,
+      "notes": "drap-housse, drap, housse couette, taie · Aligné 2026-05-10 sur Supabase prod (18€→22€)",
+      "ordre": 10,
+      "composition": {
+        "items": [
+          {
+            "label": "Drap-housse",
+            "qty": 1
+          },
+          {
+            "label": "Drap plat",
+            "qty": 1
+          },
+          {
+            "label": "Housse de couette",
+            "qty": 1
+          },
+          {
+            "label": "Taie d'oreiller",
+            "qty": 1
+          }
+        ],
+        "note": "1 personne · linge remis en boutique, repris"
+      },
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "kit_lit_2p",
+      "nom": "Kit Lit 2 places",
+      "categorie": "kit",
+      "sous_categorie": null,
+      "unite": "semaine",
+      "prix_ttc": 28,
+      "prix_premium": 45,
+      "prix_ancien": null,
+      "notes": "drap-housse, drap, housse couette, 2 taies",
+      "ordre": 11,
+      "composition": {
+        "items": [
+          {
+            "label": "Drap-housse double",
+            "qty": 1
+          },
+          {
+            "label": "Drap plat double",
+            "qty": 1
+          },
+          {
+            "label": "Housse de couette",
+            "qty": 1
+          },
+          {
+            "label": "Taies d'oreiller",
+            "qty": 2
+          }
+        ],
+        "note": "Lit 2 personnes · linge remis en boutique, repris"
+      },
+      "is_top": false,
+      "featured": {
+        "cardClass": "kit-card--hero",
+        "badge": null,
+        "taglineOverride": "2 personnes · le best-seller"
+      }
+    },
+    {
+      "id": "kit_bain",
+      "nom": "Kit Bain",
+      "categorie": "kit",
+      "sous_categorie": null,
+      "unite": "semaine",
+      "prix_ttc": 16,
+      "prix_premium": 26,
+      "prix_ancien": null,
+      "notes": "2 serviettes + 1 drap de bain + 1 tapis",
+      "ordre": 12,
+      "composition": {
+        "items": [
+          {
+            "label": "Serviettes de toilette",
+            "qty": 2
+          },
+          {
+            "label": "Drap de bain",
+            "qty": 1
+          },
+          {
+            "label": "Tapis de bain",
+            "qty": 1
+          }
+        ],
+        "note": "Salle de bain complète · 1 personne"
+      },
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "kit_villa_4p",
+      "nom": "Kit Villa 4 personnes",
+      "categorie": "kit",
+      "sous_categorie": null,
+      "unite": "semaine",
+      "prix_ttc": 95,
+      "prix_premium": 155,
+      "prix_ancien": null,
+      "notes": "2 lits 2 pl. + 4 kits bain",
+      "ordre": 13,
+      "composition": {
+        "items": [
+          {
+            "label": "Kits Lit 2 places",
+            "qty": 2
+          },
+          {
+            "label": "Kits Bain",
+            "qty": 4
+          }
+        ],
+        "note": "Villa famille 4 personnes · le tout-en-un séjour"
+      },
+      "is_top": false,
+      "featured": null
+    },
+    {
+      "id": "kit_weekend_2p",
+      "nom": "Kit Weekend 2 personnes",
+      "categorie": "kit",
+      "sous_categorie": null,
+      "unite": "semaine",
+      "prix_ttc": 38,
+      "prix_premium": 62,
+      "prix_ancien": 32,
+      "notes": "sur 3 jours · Aligné 2026-05-10 sur Supabase prod (32€→38€)",
+      "ordre": 14,
+      "composition": {
+        "items": [
+          {
+            "label": "Kit Lit 2 places",
+            "qty": 1
+          },
+          {
+            "label": "Kits Bain",
+            "qty": 2
+          }
+        ],
+        "note": "Court séjour 3 jours · 2 personnes"
+      },
+      "is_top": false,
+      "featured": null
+    }
+  ],
+  "top_20": [
+    "drap_plat_drap_housse_1_pers",
+    "drap_housse_double",
+    "housse_couette_coton_140_180",
+    "housse_couette_lin_140_180",
+    "taie_d_oreiller",
+    "serviette_de_toilette",
+    "drap_de_bain",
+    "drap_de_plage_piscine_spa",
+    "foutta",
+    "robe_de_chambre_peignoir",
+    "nappe_moyenne_taille",
+    "nappe_grande_taille",
+    "serviette_de_table",
+    "chemise_lavee_repassee",
+    "pantalon",
+    "pull",
+    "veste_blazer",
+    "costume_2_pieces",
+    "machine_4_5_kg_lavee_sechee",
+    "lavage_au_kilo_tout_venant"
+  ]
+}

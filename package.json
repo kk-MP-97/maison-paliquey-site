@@ -1,0 +1,16 @@
+{
+  "name": "maison-paliquey-site-vitrine",
+  "version": "1.0.6",
+  "description": "Site vitrine maisonpaliquey.fr — blanchisserie, pressing & location au Cap Ferret.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "tarifs:json": "node scripts/generate-tarifs-json.mjs",
+    "tarifs:html": "node scripts/generate-tarifs-html.mjs",
+    "tarifs:sync": "npm run tarifs:json && npm run tarifs:html",
+    "vercel-build": "node scripts/generate-tarifs-html.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
