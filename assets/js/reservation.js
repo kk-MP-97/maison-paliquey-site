@@ -52,7 +52,7 @@
   if (!hasPanier && !typeClient && !gamme) return;
 
   // ─── Chargement de tarifs.json pour traduire les IDs ──────
-  fetch('assets/data/tarifs.json?v=1.0.15', { cache: 'no-cache' })
+  fetch('assets/data/tarifs.json?v=1.0.16', { cache: 'no-cache' })
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (data) {
       var map = data

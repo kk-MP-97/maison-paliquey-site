@@ -1,6 +1,6 @@
 {
   "name": "maison-paliquey-site-vitrine",
-  "version": "1.0.6",
+  "version": "1.0.16",
   "description": "Site vitrine maisonpaliquey.fr — blanchisserie, pressing & location au Cap Ferret.",
   "type": "module",
   "private": true,
