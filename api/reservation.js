@@ -17,7 +17,7 @@
 const ALLOWED_FIELDS = [
   "prenom", "nom", "email", "telephone",
   "type_client", "service", "message",
-  "entreprise",
+  "entreprise", "beneficiaire_locataire",
 ];
 
 // Anti-spam : limite basique par IP (en mémoire — reset à chaque cold start)
@@ -47,14 +47,26 @@ function escapeHtml(str) {
     .replaceAll("'", "&#39;");
 }
 
+function clientTypeLabel(type_client) {
+  if (type_client === "professionnel") return "Professionnel";
+  if (type_client === "proprietaire") return "Propriétaire (loueur)";
+  return "Particulier";
+}
+
 function buildEmailHtml(data) {
   const rows = [
     ["Nom",              `${data.prenom || ""} ${data.nom || ""}`.trim() || "—"],
     ["Email",            data.email || "—"],
     ["Téléphone",        data.telephone || "—"],
-    ["Type de client",   data.type_client === "professionnel" ? "Professionnel" : "Particulier"],
+    ["Type de client",   clientTypeLabel(data.type_client)],
     ["Service souhaité", data.service || "—"],
   ];
+  if (data.type_client === "proprietaire" && data.beneficiaire_locataire) {
+    rows.push(["Bénéficiaire locataire", data.beneficiaire_locataire]);
+  }
+  if (data.type_client === "professionnel" && data.entreprise) {
+    rows.push(["Établissement", data.entreprise]);
+  }
   const rowsHtml = rows.map(([k, v]) =>
     `<tr><td style="padding:8px 14px; background:#F4EFE8; font-weight:500; color:#1B2A4A; border-bottom:1px solid #E5DDD3;">${k}</td><td style="padding:8px 14px; color:#1B2A4A; border-bottom:1px solid #E5DDD3;">${escapeHtml(v)}</td></tr>`
   ).join("");
@@ -65,7 +77,7 @@ function buildEmailHtml(data) {
   <div style="max-width:600px; margin:0 auto; background:#ffffff; border:1px solid #E5DDD3; border-radius:16px; overflow:hidden;">
     <div style="background:#1B2A4A; color:#FDFAF6; padding:24px 28px;">
       <div style="font-family:Georgia,serif; font-size:14px; letter-spacing:0.14em; text-transform:uppercase; color:#C4A882; margin-bottom:6px;">Nouvelle demande</div>
-      <h1 style="font-family:Georgia,serif; font-weight:300; font-size:26px; margin:0;">Maison Paliquey — ${data.type_client === "professionnel" ? "Demande professionnelle" : "Demande particulier"}</h1>
+      <h1 style="font-family:Georgia,serif; font-weight:300; font-size:26px; margin:0;">Maison Paliquey — Demande ${clientTypeLabel(data.type_client).toLowerCase()}</h1>
     </div>
     <div style="padding:28px;">
       <table style="width:100%; border-collapse:collapse; font-size:14px;">${rowsHtml}</table>
@@ -122,7 +134,10 @@ export default async function handler(req, res) {
     }
 
     // Envoi via API Resend
-    const subject = `[${data.type_client === "professionnel" ? "Pro" : "Particulier"}] Demande de ${data.service || "contact"} — ${data.prenom} ${data.nom || ""}`.trim();
+    const subjectTag = data.type_client === "professionnel"
+      ? "Pro"
+      : (data.type_client === "proprietaire" ? "Propriétaire" : "Particulier");
+    const subject = `[${subjectTag}] Demande de ${data.service || "contact"} — ${data.prenom} ${data.nom || ""}`.trim();
     const resendRes = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -144,52 +159,103 @@ export default async function handler(req, res) {
       return res.status(502).json({ error: "Échec de l'envoi de l'email." });
     }
 
-    // ─── Création d'un lead dans la prospection B2B ───────────────
-    // Uniquement pour les demandes "professionnel" : on insère un
-    // prospect en étape "lead" via Supabase REST (service role).
+    // ─── Création d'un lead dans la prospection ───────────────────
+    // Toute demande de devis (particulier / propriétaire / pro) crée
+    // un prospect en étape "lead" via Supabase REST (service role) +
+    // une prospect_action initiale type "email".
     // L'échec de cette étape ne doit pas bloquer la réponse au visiteur
     // (l'email Resend, lui, a déjà été envoyé avec succès).
-    if (data.type_client === "professionnel") {
-      try {
-        const supaUrl = process.env.SUPABASE_URL;
-        const supaKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-        if (supaUrl && supaKey) {
-          const prospectId = `web-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
-          const contactName = `${data.prenom || ""} ${data.nom || ""}`.trim() || null;
-          const notesSource = [
-            `Source : formulaire site (${data.service || "contact"})`,
-            data.message ? `\nMessage :\n${data.message}` : "",
-          ].join("");
-          const prospectPayload = {
-            id: prospectId,
-            entreprise: data.entreprise || contactName || "(non renseigné)",
-            contact: contactName,
-            email: data.email || null,
-            telephone: data.telephone || null,
-            etape: "lead",
-            priorite: "moyenne",
-            notes: notesSource,
-          };
-          const supaRes = await fetch(`${supaUrl}/rest/v1/prospects`, {
-            method: "POST",
-            headers: {
-              apikey: supaKey,
-              Authorization: `Bearer ${supaKey}`,
-              "Content-Type": "application/json",
-              Prefer: "return=minimal",
-            },
-            body: JSON.stringify(prospectPayload),
-          });
-          if (!supaRes.ok) {
-            const errTxt = await supaRes.text();
-            console.error("Supabase prospects insert failed:", supaRes.status, errTxt);
-          }
+    try {
+      const supaUrl = process.env.SUPABASE_URL;
+      const supaKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+      if (supaUrl && supaKey) {
+        const prospectId = `web-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+        const contactName = `${data.prenom || ""} ${data.nom || ""}`.trim() || null;
+
+        // entreprise : varie selon le type de client
+        let entrepriseValue;
+        if (data.type_client === "professionnel") {
+          entrepriseValue = data.entreprise || contactName || "(non renseigné)";
+        } else if (data.type_client === "proprietaire") {
+          entrepriseValue = "Propriétaire";
         } else {
-          console.warn("SUPABASE_URL ou SUPABASE_SERVICE_ROLE_KEY manquant — prospect non créé.");
+          entrepriseValue = "Particulier";
         }
-      } catch (supaErr) {
-        console.error("Supabase prospect insert error:", supaErr);
+
+        // notes : source + service + type + message + (mention propriétaire si applicable)
+        const notesParts = [
+          `Source : site-vitrine (${data.service || "contact"})`,
+          `Type : ${clientTypeLabel(data.type_client)}`,
+        ];
+        if (data.type_client === "proprietaire") {
+          notesParts.push(
+            data.beneficiaire_locataire
+              ? `Type : propriétaire — bénéficiaire : ${data.beneficiaire_locataire}`
+              : "Type : propriétaire — bénéficiaire à préciser"
+          );
+        }
+        if (data.message) {
+          notesParts.push(`\nMessage :\n${data.message}`);
+        }
+        const notesSource = notesParts.join("\n");
+
+        const prospectPayload = {
+          id: prospectId,
+          entreprise: entrepriseValue,
+          contact: contactName,
+          email: data.email || null,
+          telephone: data.telephone || null,
+          etape: "lead",
+          priorite: "moyenne",
+          notes: notesSource,
+        };
+        const supaRes = await fetch(`${supaUrl}/rest/v1/prospects`, {
+          method: "POST",
+          headers: {
+            apikey: supaKey,
+            Authorization: `Bearer ${supaKey}`,
+            "Content-Type": "application/json",
+            Prefer: "return=minimal",
+          },
+          body: JSON.stringify(prospectPayload),
+        });
+        if (!supaRes.ok) {
+          const errTxt = await supaRes.text();
+          console.error("Supabase prospects insert failed:", supaRes.status, errTxt);
+        } else {
+          // Action initiale liée au prospect (best-effort, n'échoue pas la requête)
+          try {
+            const actionId = `act-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+            const actionPayload = {
+              id: actionId,
+              prospect_id: prospectId,
+              type: "email",
+              notes: "Demande de devis reçue depuis le site vitrine",
+              auteur: "site-vitrine",
+            };
+            const actRes = await fetch(`${supaUrl}/rest/v1/prospect_actions`, {
+              method: "POST",
+              headers: {
+                apikey: supaKey,
+                Authorization: `Bearer ${supaKey}`,
+                "Content-Type": "application/json",
+                Prefer: "return=minimal",
+              },
+              body: JSON.stringify(actionPayload),
+            });
+            if (!actRes.ok) {
+              const errTxt = await actRes.text();
+              console.error("Supabase prospect_actions insert failed:", actRes.status, errTxt);
+            }
+          } catch (actErr) {
+            console.error("Supabase prospect_action insert error:", actErr);
+          }
+        }
+      } else {
+        console.warn("SUPABASE_URL ou SUPABASE_SERVICE_ROLE_KEY manquant — prospect non créé.");
       }
+    } catch (supaErr) {
+      console.error("Supabase prospect insert error:", supaErr);
     }
 
     return res.status(200).json({ ok: true });

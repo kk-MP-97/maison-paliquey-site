@@ -110,12 +110,29 @@
               <option value="professionnel">Compte professionnel</option>
             </select>
           </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="c-type">Vous êtes</label>
+              <select class="form-control" id="c-type" name="type_client">
+                <option value="particulier">Particulier</option>
+                <option value="proprietaire">Propriétaire (loueur)</option>
+                <option value="professionnel">Professionnel (hôtel, restaurant, conciergerie…)</option>
+              </select>
+            </div>
+            <div class="form-group" id="f-entreprise-group" hidden>
+              <label class="form-label" for="c-entreprise">Nom de l'établissement</label>
+              <input class="form-control" type="text" id="c-entreprise" name="entreprise" autocomplete="organization" placeholder="Hôtel, restaurant, conciergerie…" />
+            </div>
+          </div>
+          <div class="form-group" id="c-beneficiaire-group" hidden>
+            <label class="form-label" for="c-beneficiaire">Nom du locataire bénéficiaire <span style="color:var(--mp-gray); font-weight:400;">(optionnel)</span></label>
+            <input class="form-control" type="text" id="c-beneficiaire" name="beneficiaire_locataire" autocomplete="off" placeholder="Nom du locataire concerné par la prestation" />
+          </div>
           <div class="form-group">
             <label class="form-label" for="c-message">Votre message<span class="req">*</span></label>
             <textarea class="form-control" id="c-message" name="message" rows="4" required></textarea>
           </div>
           <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px;" aria-hidden="true" />
-          <input type="hidden" name="type_client" value="particulier" />
           <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Envoyer mon message</button>
           <p class="form-reassurance">Réponse sous 24 h ouvrées · Aucun démarchage</p>
         </form>

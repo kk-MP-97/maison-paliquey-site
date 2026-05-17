@@ -100,6 +100,7 @@
             <label class="form-label" for="f-type">Type de client</label>
             <select class="form-control" id="f-type" name="type_client">
               <option value="particulier">Particulier</option>
+              <option value="proprietaire">Propriétaire (loueur)</option>
               <option value="professionnel">Professionnel (hôtel, restaurant, conciergerie…)</option>
             </select>
           </div>
@@ -118,6 +119,11 @@
               <option value="autre">Autre / sur-mesure</option>
             </select>
           </div>
+        </div>
+
+        <div class="form-group" id="c-beneficiaire-group" hidden>
+          <label class="form-label" for="f-beneficiaire">Nom du locataire bénéficiaire <span style="color:var(--mp-gray); font-weight:400;">(optionnel)</span></label>
+          <input class="form-control" type="text" id="f-beneficiaire" name="beneficiaire_locataire" autocomplete="off" placeholder="Nom du locataire concerné par la prestation" />
         </div>
 
         <div class="form-group">

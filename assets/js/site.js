@@ -71,18 +71,29 @@
   }
 
   // ---------------------------------------------------------------------
-  // 3bis. Affichage conditionnel du champ "entreprise" selon type_client
+  // 3bis. Affichage conditionnel des champs selon type_client
+  //   - "entreprise" → visible si professionnel (et requis)
+  //   - "beneficiaire_locataire" → visible si propriétaire (optionnel)
   // ---------------------------------------------------------------------
   document.querySelectorAll('select[name="type_client"]').forEach(function (sel) {
     var form = sel.closest('form');
     if (!form) return;
-    var group = form.querySelector('#f-entreprise-group');
-    if (!group) return;
-    var input = group.querySelector('input[name="entreprise"]');
+    var entrepriseGroup = form.querySelector('#f-entreprise-group');
+    var entrepriseInput = entrepriseGroup ? entrepriseGroup.querySelector('input[name="entreprise"]') : null;
+    var beneficiaireGroup = form.querySelector('#c-beneficiaire-group');
+    var beneficiaireInput = beneficiaireGroup ? beneficiaireGroup.querySelector('input[name="beneficiaire_locataire"]') : null;
     function sync() {
       var isPro = sel.value === 'professionnel';
-      group.hidden = !isPro;
-      if (input) input.required = isPro;
+      var isProprio = sel.value === 'proprietaire';
+      if (entrepriseGroup) {
+        entrepriseGroup.hidden = !isPro;
+        if (entrepriseInput) entrepriseInput.required = isPro;
+      }
+      if (beneficiaireGroup) {
+        beneficiaireGroup.hidden = !isProprio;
+        // champ optionnel — pas de required
+        if (!isProprio && beneficiaireInput) beneficiaireInput.value = '';
+      }
     }
     sel.addEventListener('change', sync);
     sync();
