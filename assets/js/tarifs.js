@@ -314,12 +314,17 @@
     html += '<div class="simu-articles' + (isLuxe ? ' is-luxe' : '') + '">';
     items.forEach(function (t) {
       var qty = state.panier[t.id] || 0;
-      var unitPrice = getPrix(t);
-      var billed = (isLocation && (t.categorie === "kit" || t.categorie === "location"))
-        ? computeBilledWeeks(state.dureeSemainesLocation)
+      var unitPrice = getUnitPrice(t);
+      var isHebdoCat = (t.categorie === "kit" || t.categorie === "location");
+      var billed = (isLocation && isHebdoCat)
+        ? (isWeekendMode() ? 1 : computeBilledWeeks(state.dureeSemainesLocation))
         : 1;
       var lineTotal = qty * unitPrice * billed;
+      // Suffixe d'unité avec gestion durée pour kit/location
       var unite = uniteLabel(t.unite);
+      if (isHebdoCat) {
+        unite = isWeekendMode() ? ' / WE' : ' / sem.';
+      }
       var stepClass = t.unite === "kg" ? "simu-article simu-article--kilo" : "simu-article";
       var step = t.unite === "kg" ? "0.5" : "1";
       var max = t.unite === "kg" ? "50" : "99";
@@ -339,6 +344,8 @@
       var lineTotalHtml;
       if (isLuxe) {
         lineTotalHtml = '<div class="simu-line-total simu-line-total--devis">— €</div>';
+      } else if (isHebdoCat && qty > 0 && isWeekendMode()) {
+        lineTotalHtml = '<div class="simu-line-total"><span class="line-mult">× 1 WE</span> ' + fmtEUR(lineTotal) + '</div>';
       } else if (billed > 1 && qty > 0) {
         lineTotalHtml = '<div class="simu-line-total"><span class="line-mult">×' + billed + ' sem</span> ' + fmtEUR(lineTotal) + '</div>';
       } else {
@@ -884,7 +891,11 @@
     items.forEach(function (t) {
       var qty = stateB2B.panier[t.id] || 0;
       var lineTotal = qty * t.prix_ttc;
+      // Suffixe d'unité avec gestion durée pour kit/location
       var unite = uniteLabel(t.unite);
+      if (isHebdoCat) {
+        unite = isWeekendMode() ? ' / WE' : ' / sem.';
+      }
       var stepClass = t.unite === "kg" ? "simu-article simu-article--kilo" : "simu-article";
       var step = t.unite === "kg" ? "0.5" : "1";
       var max = t.unite === "kg" ? "500" : "999";
