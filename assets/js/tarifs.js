@@ -139,6 +139,18 @@
     return Math.max(0, Math.floor(weeks / 4));
   }
 
+  // Helper : retourne la variante weekend d'un kit/location (si elle existe)
+  function getWeekendVariant(t) {
+    if (t.duree === 'weekend') return t;
+    var weId = t.id + '_we';
+    return state.map[weId] || null;
+  }
+
+  // Helper : true si on est en mode Weekend (durée = 0 semaine = 1 forfait WE)
+  function isWeekendMode() {
+    return state.dureeSemainesLocation === 0;
+  }
+
   // Helper : prix unitaire d'un tarif selon la gamme active (location uniquement)
   function getPrix(t) {
     if (state.catActive === "location" && state.gammeLocation === "premium" && t.prix_premium) {
@@ -255,6 +267,7 @@
       // Sélecteur de durée (avec promo « 1 sem offerte / mois entamé »)
       var dureeActive = state.dureeSemainesLocation;
       var presets = [
+        { weeks: 0,  label: "WE", isWeekend: true },
         { weeks: 1,  label: "1 sem" },
         { weeks: 2,  label: "2 sem" },
         { weeks: 4,  label: "4 sem · 1 mois", promo: true },
@@ -271,8 +284,8 @@
         var off = offeredWeeks(p.weeks);
         var promoTag = off > 0
           ? '<span class="simu-duree-promo">★ ' + off + ' sem offerte' + (off > 1 ? 's' : '') + '</span>'
-          : '';
-        html += '<button type="button" role="radio" data-duree="' + p.weeks + '" aria-checked="' + isOn + '" class="simu-duree' + (isOn ? ' is-active' : '') + '"' + disabled + '>';
+          : (p.isWeekend ? '<span class="simu-duree-promo simu-duree-promo--we">3 jours</span>' : '');
+        html += '<button type="button" role="radio" data-duree="' + p.weeks + '" aria-checked="' + isOn + '" class="simu-duree' + (isOn ? ' is-active' : '') + (p.isWeekend ? ' simu-duree--we' : '') + '"' + disabled + '>';
         html +=   '<span class="d-label">' + p.label + '</span>';
         html +=   promoTag;
         html += '</button>';
@@ -534,6 +547,11 @@
   // (sans multiplier par la durée — la multiplication est faite par lineCost)
   function getUnitPrice(t) {
     if (t.categorie !== "kit" && t.categorie !== "location") return t.prix_ttc;
+    // Mode Weekend : prix de la variante *_we (ou prix du produit s'il est lui-même weekend)
+    if (isWeekendMode()) {
+      var we = getWeekendVariant(t);
+      return we ? we.prix_ttc : 0;
+    }
     if (state.gammeLocation === "premium" && t.prix_premium) return t.prix_premium;
     if (state.gammeLocation === "luxe") return 0;
     return t.prix_ttc;
@@ -544,6 +562,8 @@
   function lineCost(t, qty) {
     var unit = getUnitPrice(t);
     if (t.categorie === "kit" || t.categorie === "location") {
+      // Mode WE : un seul forfait weekend, pas de multiplication par semaines
+      if (isWeekendMode()) return qty * unit;
       return qty * unit * computeBilledWeeks(state.dureeSemainesLocation);
     }
     return qty * unit;
