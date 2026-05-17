@@ -109,6 +109,35 @@ const COMPOSITIONS = {
     ],
     note: 'Court séjour 3 jours · 2 personnes',
   },
+  // Kits Weekend (révision 2026-05-17) — exposés dans le JSON mais
+  // pas encore rendus en cards sur le site (V2). Compositions enrichies
+  // pour cohérence du simulateur et de la grille.
+  kit_lit_1p_we: {
+    items: [
+      { label: 'Drap-housse', qty: 1 },
+      { label: 'Drap plat',   qty: 1 },
+      { label: 'Housse de couette', qty: 1 },
+      { label: "Taie d'oreiller", qty: 1 },
+    ],
+    note: '1 personne · forfait 3 jours (vendredi-lundi)',
+  },
+  kit_lit_2p_we: {
+    items: [
+      { label: 'Drap-housse double', qty: 1 },
+      { label: 'Drap plat double',   qty: 1 },
+      { label: 'Housse de couette',  qty: 1 },
+      { label: "Taies d'oreiller",  qty: 2 },
+    ],
+    note: 'Lit 2 personnes · forfait 3 jours (vendredi-lundi)',
+  },
+  kit_bain_we: {
+    items: [
+      { label: 'Serviettes de toilette', qty: 2 },
+      { label: 'Drap de bain', qty: 1 },
+      { label: 'Tapis de bain', qty: 1 },
+    ],
+    note: 'Salle de bain complète · forfait 3 jours',
+  },
 };
 
 // ─────────────────────────────────────────────────────────────────────
@@ -205,6 +234,7 @@ const tarifs = SEED_TARIFS.filter((t) => t.actif).map((t) => ({
   unite: t.unite,
   prix_ttc: t.prix_ttc,                  // gamme Confort pour kits/location
   prix_premium: PRIX_PREMIUM[t.id] || null, // gamme Premium (null si non concerné)
+  duree: t.duree || null,                // 'semaine' | 'weekend' | null (révision 2026-05-17)
   prix_ancien: t.prix_ancien,
   notes: t.notes,
   ordre: t.ordre,

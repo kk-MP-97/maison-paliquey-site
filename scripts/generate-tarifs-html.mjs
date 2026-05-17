@@ -152,8 +152,11 @@ ${badge}          <h3>${escapeHtml(title)}<br><span style="font-size: 0.85rem; c
 // Bloc KITS
 // ─────────────────────────────────────────────────────────────────────
 function renderKits() {
+  // Exclusion 2026-05-17 : on n'affiche PAS encore en cards les nouveaux kits weekend
+  // (kit_lit_1p_we, kit_lit_2p_we, kit_bain_we). Le kit_weekend_2p existant reste rendu
+  // avec son nouveau prix 39€ et sa composition redressée. V2 prévue pour les autres.
   const kits = data.tarifs
-    .filter((t) => t.categorie === 'kit')
+    .filter((t) => t.categorie === 'kit' && !t.id.endsWith('_we'))
     .sort((a, b) => a.ordre - b.ordre);
 
   // Ordre commercial : Lit 1pl, Lit 2pl, Bain, Villa 4p, Weekend 2p
@@ -237,7 +240,9 @@ function renderAccordion() {
       id: 'piece-location',
       title: 'Location à la pièce',
       subtitle: 'Pour compléter un kit ou louer ponctuellement · prix gamme Confort',
-      filter: (t) => t.categorie === 'location',
+      // Exclusion 2026-05-17 : les locations weekend sont en DB mais pas exposées
+      // dans l'accordion à la pièce (faible valeur commerciale unitaire).
+      filter: (t) => t.categorie === 'location' && !t.id.endsWith('_we'),
     },
   ];
 
