@@ -1560,10 +1560,6 @@ select.form-control { appearance: none; background-image: url("data:image/svg+xm
 /* ── Sélecteur de durée location (avec promo "1 sem offerte / mois") ─ */
 .simu-duree-section {
   margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
 }
 .simu-duree-section[aria-disabled="true"] { opacity: 0.4; pointer-events: none; }
 .simu-duree-label {
@@ -1572,16 +1568,13 @@ select.form-control { appearance: none; background-image: url("data:image/svg+xm
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--mp-gray);
-  margin-bottom: 0;
-  flex-shrink: 0;
-  white-space: nowrap;
+  margin-bottom: 0.5rem;
+  display: block;
 }
 .simu-duree-selector {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.4rem;
-  flex: 1;
-  min-width: 280px;
 }
 @media (min-width: 600px) {
   .simu-duree-selector { grid-template-columns: repeat(6, 1fr); }

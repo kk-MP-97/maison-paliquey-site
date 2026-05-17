@@ -891,11 +891,8 @@
     items.forEach(function (t) {
       var qty = stateB2B.panier[t.id] || 0;
       var lineTotal = qty * t.prix_ttc;
-      // Suffixe d'unité avec gestion durée pour kit/location
+      // B2B : pas de toggle weekend, affichage standard (le hebdoSuffix gère 'par semaine')
       var unite = uniteLabel(t.unite);
-      if (isHebdoCat) {
-        unite = isWeekendMode() ? ' / WE' : ' / sem.';
-      }
       var stepClass = t.unite === "kg" ? "simu-article simu-article--kilo" : "simu-article";
       var step = t.unite === "kg" ? "0.5" : "1";
       var max = t.unite === "kg" ? "500" : "999";
