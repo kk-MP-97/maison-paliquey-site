@@ -183,9 +183,10 @@ export default async function handler(req, res) {
         }
 
         // notes : source + service + type + message + (mention propriétaire si applicable)
+        // — pour propriétaire, on ne met PAS la ligne générique "Type : propriétaire"
+        //   pour éviter le doublon avec la ligne enrichie bénéficiaire qui suit.
         const notesParts = [
           `Source : site-vitrine (${data.service || "contact"})`,
-          `Type : ${clientTypeLabel(data.type_client)}`,
         ];
         if (data.type_client === "proprietaire") {
           notesParts.push(
@@ -193,6 +194,8 @@ export default async function handler(req, res) {
               ? `Type : propriétaire — bénéficiaire : ${data.beneficiaire_locataire}`
               : "Type : propriétaire — bénéficiaire à préciser"
           );
+        } else {
+          notesParts.push(`Type : ${clientTypeLabel(data.type_client)}`);
         }
         if (data.message) {
           notesParts.push(`\nMessage :\n${data.message}`);
@@ -250,6 +253,40 @@ export default async function handler(req, res) {
           } catch (actErr) {
             console.error("Supabase prospect_action insert error:", actErr);
           }
+        }
+
+        // ─── Notification Slack (best-effort) ────────────────────────
+        // On déclenche l'Edge Function notify_slack pour qu'une notif
+        // tombe dans #02-locations-b2b (lead pro) ou #05-clients-questions
+        // (lead particulier/propriétaire). Ne bloque jamais la réponse.
+        try {
+          const isPro = data.type_client === "professionnel";
+          const slackEvent = isPro ? "nouveau_lead_b2b" : "nouveau_lead_b2c";
+          const slackBody = {
+            event: slackEvent,
+            prospect_id: prospectId,
+            source: `site-vitrine · ${data.service || "contact"}`,
+            client_nom: contactName,
+            entreprise: isPro ? entrepriseValue : null,
+            email: data.email || null,
+            telephone: data.telephone || null,
+            message: data.message || null,
+            client_type: data.type_client || "particulier",
+          };
+          // Appel direct à l'edge function via REST + service role
+          fetch(`${supaUrl}/functions/v1/notify_slack`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${supaKey}`,
+              apikey: supaKey,
+            },
+            body: JSON.stringify(slackBody),
+          }).catch((slackErr) => {
+            console.warn("[slack] notify_slack lead error:", slackErr);
+          });
+        } catch (slackErr) {
+          console.warn("[slack] notify_slack lead exception:", slackErr);
         }
       } else {
         console.warn("SUPABASE_URL ou SUPABASE_SERVICE_ROLE_KEY manquant — prospect non créé.");
