@@ -178,6 +178,10 @@ function renderKits() {
 
       const confort = fmtEUR(t.prix_ttc);
       const premium = t.prix_premium ? fmtEUR(t.prix_premium) : null;
+      // Unité d'affichage : weekend (3 jours forfaitaires) ou semaine.
+      // Avant 2026-05-23 : "/ sem." hardcodé pour tous les kits → faux pour
+      // Kit Weekend 2 personnes (39 € sur 3 jours, pas sur la semaine).
+      const uniteSuffix = t.duree === 'weekend' ? '/ week-end' : '/ sem.';
 
       return `        <article class="${cardClass}">
           <header class="kit-header">
@@ -191,8 +195,8 @@ ${compoLis}
             </ul>
           </div>
           <div class="kit-gammes">
-            <div class="kit-gamme"><span class="label">Confort</span><div class="prix">${confort}<span class="unite">/ sem.</span></div></div>
-            <div class="kit-gamme"><span class="label">Premium</span><div class="prix">${premium || 'Sur devis'}<span class="unite">/ sem.</span></div></div>
+            <div class="kit-gamme"><span class="label">Confort</span><div class="prix">${confort}<span class="unite">${uniteSuffix}</span></div></div>
+            <div class="kit-gamme"><span class="label">Premium</span><div class="prix">${premium || 'Sur devis'}<span class="unite">${uniteSuffix}</span></div></div>
             <div class="kit-gamme kit-gamme--devis"><span class="label">Luxe</span><div class="prix">Sur devis</div></div>
           </div>
         </article>`;
@@ -246,10 +250,29 @@ function renderAccordion() {
     },
   ];
 
+  // Fusion d'affichage 2026-05-23 : le public ne distingue pas drap de bain
+  // et drap de douche. On garde la séparation côté seedTarifs / Supabase (utile
+  // ops & caisse) mais on n'expose qu'une seule entrée « Drap de bain » au prix
+  // le plus élevé des deux. La règle vaut uniquement pour la grille publique.
+  function fusionnerDrapsBainDouche(items) {
+    const bain   = items.find((t) => t.id === 'drap_de_bain');
+    const douche = items.find((t) => t.id === 'drap_de_douche');
+    if (!bain || !douche) return items; // pas de fusion possible → on laisse en l'état
+    const prixMax = Math.max(Number(bain.prix_ttc) || 0, Number(douche.prix_ttc) || 0);
+    const fusionne = { ...bain, prix_ttc: prixMax };
+    return items
+      .filter((t) => t.id !== 'drap_de_douche')
+      .map((t) => (t.id === 'drap_de_bain' ? fusionne : t));
+  }
+
   return sections.map((section) => {
-    const items = data.tarifs
+    let items = data.tarifs
       .filter(section.filter)
       .sort((a, b) => a.ordre - b.ordre);
+
+    if (section.id === 'piece-blanchisserie-bain') {
+      items = fusionnerDrapsBainDouche(items);
+    }
 
     const lis = items.map((t) => {
       const unitSpan = t.unite === 'm2' || t.unite === 'kg' || t.unite === 'semaine'
