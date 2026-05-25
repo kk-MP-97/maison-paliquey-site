@@ -122,7 +122,7 @@
   var state = {
     tarifs: null,         // tableau brut
     map: {},              // id → tarif
-    catActive: "forfait",
+    catActive: "location", // Phase 1 E2 — Location par défaut
     panier: {},           // { tarifId: qty }
     gammeLocation: "confort",      // 'confort' | 'premium' | 'luxe'
     dureeSemainesLocation: 1,      // durée en semaines (kit + location à la pièce)

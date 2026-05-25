@@ -2219,3 +2219,105 @@ select.form-control { appearance: none; background-image: url("data:image/svg+xm
 
 /* ── FAQ tarifs (réutilise .faq-* existants) ─────────────────────────── */
 .section-faq-tarifs { padding: 4rem 0; background: var(--mp-white); }
+
+/* ============================================================
+   Phase 1 E4 — Renforcement visibilité "Luxe" (2026-05-25)
+   ============================================================ */
+
+/* Sélecteur de gamme Luxe dans le simulateur (état non sélectionné) */
+.simu-gamme--luxe {
+  border-color: var(--mp-sand);
+  background: linear-gradient(135deg, var(--mp-ivory) 0%, #F9F2E4 100%);
+}
+.simu-gamme--luxe .g-label {
+  color: var(--mp-sand);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+/* Sélecteur de gamme Luxe — état sélectionné (override navy de base) */
+.simu-gamme--luxe.is-active {
+  background: linear-gradient(135deg, var(--mp-navy) 0%, var(--mp-navy-2) 100%);
+  border-color: var(--mp-sand);
+  box-shadow: 0 0 0 2px var(--mp-sand-2), 0 4px 12px rgba(196, 168, 130, 0.25);
+}
+.simu-gamme--luxe.is-active .g-label {
+  color: var(--mp-sand-2);
+  font-weight: 700;
+}
+
+/* Badges "Luxe — Sur devis" dans les kit-cards (forfaits lit/bain/villa…) */
+.kit-gamme--devis {
+  background: linear-gradient(135deg, var(--mp-ivory) 0%, #F9F2E4 100%);
+  border: 1.5px solid var(--mp-sand);
+  border-radius: 6px;
+}
+.kit-gamme--devis .label {
+  color: var(--mp-sand);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.kit-gamme--devis .prix {
+  color: var(--mp-navy);
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* ============================================================
+   Phase 1 E5 — Responsive mobile simulateur (2026-05-25)
+   Fix bugs visibles sur iPhone 14/15 (390px viewport) :
+   - noms d'articles tronqués ("Kit L...")
+   - prix qui s'écrase sur 3 lignes
+   ============================================================ */
+
+/* ── Articles du simulateur : layout 2 lignes sous 600px ── */
+@media (max-width: 600px) {
+  .simu-article {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "info info"
+      "stepper total";
+    row-gap: 0.55rem;
+    column-gap: 0.5rem;
+    padding: 0.7rem 0.85rem;
+  }
+  .simu-article-info { grid-area: info; }
+  .simu-stepper      { grid-area: stepper; justify-self: start; }
+  .simu-line-total   { grid-area: total; align-self: center; }
+
+  /* Nom complet sur 1-2 lignes au lieu de "..." */
+  .simu-article-info .nom {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    line-height: 1.25;
+  }
+
+  /* Prix sur 1 ligne unique (22,00 € / sem.) */
+  .simu-article-info .prix {
+    white-space: nowrap;
+  }
+  .simu-article-info .prix strong {
+    white-space: nowrap;
+  }
+
+  /* Total ligne : pas trop large pour laisser de la place au stepper */
+  .simu-line-total {
+    min-width: 0;
+    font-size: 0.95rem;
+  }
+}
+
+/* ── Encore plus étroit (iPhone SE 375px) — compactage stepper ── */
+@media (max-width: 400px) {
+  .simu-stepper input {
+    width: 1.8rem;
+  }
+  .simu-stepper button {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .simu-article {
+    padding: 0.6rem 0.7rem;
+  }
+}
