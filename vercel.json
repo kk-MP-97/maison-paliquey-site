@@ -17,7 +17,10 @@
     { "source": "/a-propos.html", "destination": "/a-propos", "permanent": true },
     { "source": "/mentions-legales.html", "destination": "/mentions-legales", "permanent": true },
     { "source": "/politique-confidentialite.html", "destination": "/politique-confidentialite", "permanent": true },
-    { "source": "/portail-pro.html", "destination": "/portail-pro", "permanent": true },
+
+    { "source": "/portail-pro", "destination": "https://pro.maisonpaliquey.fr", "permanent": true },
+    { "source": "/portail-pro.html", "destination": "https://pro.maisonpaliquey.fr", "permanent": true },
+    { "source": "/portail-pro/", "destination": "https://pro.maisonpaliquey.fr", "permanent": true },
 
     { "source": "/linge-pro", "destination": "/services#location", "permanent": true },
     { "source": "/linge-pro/", "destination": "/services#location", "permanent": true },
@@ -29,8 +32,8 @@
     { "source": "/blanchisserie", "destination": "/services#blanchisserie", "permanent": true },
     { "source": "/pressing", "destination": "/services#pressing", "permanent": true },
     { "source": "/location-de-linge", "destination": "/services#location", "permanent": true },
-    { "source": "/professionnels", "destination": "/portail-pro", "permanent": true },
-    { "source": "/pro", "destination": "/portail-pro", "permanent": true }
+    { "source": "/professionnels", "destination": "https://pro.maisonpaliquey.fr", "permanent": true },
+    { "source": "/pro", "destination": "https://pro.maisonpaliquey.fr", "permanent": true }
   ],
 
   "headers": [
