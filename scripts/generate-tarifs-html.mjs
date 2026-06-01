@@ -224,8 +224,8 @@ function renderAccordion() {
     },
     {
       id: 'piece-blanchisserie-table',
-      title: 'Blanchisserie · Table',
-      subtitle: 'Nappes, serviettes de table, torchons',
+      title: 'Blanchisserie · Torchons',
+      subtitle: 'Torchons de cuisine',
       filter: (t) => t.categorie === 'blanchisserie_linge_maison' && t.sous_categorie === 'table',
     },
     {

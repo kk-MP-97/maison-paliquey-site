@@ -159,8 +159,6 @@ const PRIX_PREMIUM = {
   loc_housse_couette:            9.50,
   loc_serviette_bain:            4.50,
   loc_drap_bain_xl:              6.00,
-  loc_nappe:                     13.00,
-  loc_serviettes_table_x10:      10.00,
 };
 
 // ─────────────────────────────────────────────────────────────────────
@@ -198,10 +196,8 @@ const TOP_20 = [
   'drap_de_plage_piscine_spa',
   'foutta',
   'robe_de_chambre_peignoir',
-  // Table (3)
-  'nappe_moyenne_taille',
-  'nappe_grande_taille',
-  'serviette_de_table',
+  // Table (1) — nappes & serviettes de table retirées 2026-06-01
+  'torchon',
   // Pressing (5)
   'chemise_lavee_repassee',
   'pantalon',
@@ -219,7 +215,7 @@ const TOP_20 = [
 const SUB_CATS = {
   literie:  { label: 'Literie',                ordre: 1 },
   bain:     { label: 'Bain & serviettes',      ordre: 2 },
-  table:    { label: 'Table, nappes & torchons', ordre: 3 },
+  table:    { label: 'Torchons', ordre: 3 },
   rideaux:  { label: 'Rideaux, voilages & tapis', ordre: 4 },
 };
 
