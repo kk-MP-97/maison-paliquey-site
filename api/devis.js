@@ -146,6 +146,41 @@ export default async function handler(req, res) {
       });
     } catch (e) { console.warn("devis action insert:", e); }
 
+    // ── Email à l'équipe (contact@) — comme l'ancien parcours « Réserver »
+    //    avant Mollie. Best-effort : n'échoue pas la demande.
+    try {
+      const RESEND_API_KEY = process.env.RESEND_API_KEY;
+      const RESEND_FROM = process.env.RESEND_FROM || "Maison Paliquey <contact@maisonpaliquey.fr>";
+      const RESEND_TO = process.env.RESEND_TO || "contact@maisonpaliquey.fr";
+      if (RESEND_API_KEY) {
+        const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        const rowsHtml = quote.lines.map((l) =>
+          `<tr><td style="padding:6px 12px;border-bottom:1px solid #E5DDD3;">${esc(l.qty)}× ${esc(l.nom)}${l.gamme === "premium" ? " (premium)" : ""}${l.weekly ? ` · ${l.weeks_applied} sem` : ""}</td><td style="padding:6px 12px;border-bottom:1px solid #E5DDD3;text-align:right;">${fmtEuros(l.line_cents)}</td></tr>`
+        ).join("");
+        const html = `<!doctype html><html lang="fr"><body style="margin:0;padding:24px;font-family:-apple-system,Segoe UI,Arial,sans-serif;background:#FDFAF6;color:#1B2A4A;">
+  <div style="max-width:600px;margin:0 auto;background:#fff;border:1px solid #E5DDD3;border-radius:16px;overflow:hidden;">
+    <div style="background:#1B2A4A;color:#FDFAF6;padding:22px 26px;">
+      <div style="font-family:Georgia,serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#C4A882;">Demande de devis — site web</div>
+      <h1 style="font-family:Georgia,serif;font-weight:300;font-size:24px;margin:6px 0 0;">${esc(contactName)}</h1>
+    </div>
+    <div style="padding:22px 26px;font-size:14px;line-height:1.6;">
+      <p style="margin:0 0 6px;"><strong>Email :</strong> ${esc(email)} · <strong>Tél :</strong> ${esc(telephone)}</p>
+      <p style="margin:0 0 6px;"><strong>Séjour :</strong> ${esc(sejour.debut)} → ${esc(sejour.fin)} (${quote.weeks} sem${quote.free_weeks ? `, ${quote.free_weeks} offerte(s)` : ""})</p>
+      <table style="width:100%;border-collapse:collapse;margin:14px 0;font-size:13px;">${rowsHtml}
+        <tr><td style="padding:8px 12px;font-weight:600;">Estimation</td><td style="padding:8px 12px;text-align:right;font-weight:600;">${esc(estimation)}</td></tr>
+      </table>
+      ${message ? `<p style="margin:0 0 6px;"><strong>Message :</strong> ${esc(message)}</p>` : ""}
+      <p style="margin:16px 0 0;font-size:12px;color:#6B7280;">Lead créé dans Prospection (${esc(prospectId)}). Valide-le pour envoyer le devis + lien de paiement au client.</p>
+    </div>
+  </div></body></html>`;
+        await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${RESEND_API_KEY}` },
+          body: JSON.stringify({ from: RESEND_FROM, to: [RESEND_TO], reply_to: email, subject: `[Devis web] ${contactName} — ${estimation}`, html }),
+        });
+      }
+    } catch (e) { console.warn("devis email équipe:", e); }
+
     // Notif Slack interne (best-effort)
     try {
       fetch(`${SUPABASE_URL}/functions/v1/notify_slack`, {

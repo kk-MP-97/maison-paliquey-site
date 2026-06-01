@@ -821,7 +821,7 @@
         "kit_bain",
         "kit_villa_4p",
         "kit_weekend_2p",
-        // Linge plat à la pièce / serviettes / nappes pour le complément
+        // Linge plat à la pièce / serviettes pour le complément
         "drap_de_bain",
         "serviette_de_toilette",
       ],
@@ -843,10 +843,6 @@
     restauration: {
       label: "Restauration, traiteur, spa",
       items: [
-        "nappe_grande_taille",
-        "nappe_moyenne_taille",
-        "nappe_petite_taille",
-        "serviette_de_table",
         "torchon",
         "drap_de_bain",
         "serviette_de_toilette",
