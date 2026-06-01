@@ -164,7 +164,7 @@ function kitCardHTML(t) {
     <div class="kit-card__flag" data-flag hidden>Limité à 3 jours — séjour trop long</div>
     ${hasPremium ? `
     <div class="gamme-tabs" role="group" aria-label="Gamme ${esc(t.nom)}">
-      <button type="button" data-gamme="standard" aria-pressed="true">Standard</button>
+      <button type="button" data-gamme="standard" aria-pressed="true">Confort</button>
       <button type="button" data-gamme="premium" aria-pressed="false">Premium</button>
     </div>` : ""}
     <div class="kit-card__price"><span data-price>${fmtEUR(toCents(t.prix_ttc))}</span> <span class="unit">${dureeLabel}</span></div>
