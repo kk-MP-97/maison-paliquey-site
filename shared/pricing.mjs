@@ -22,6 +22,14 @@
 // Catégories facturées à la semaine (séjour) et éligibles à la semaine offerte.
 const WEEKLY_CATEGORIES = ["kit", "location"];
 
+// Un forfait week-end ne peut pas couvrir plus de 3 jours.
+export const WEEKEND_MAX_NIGHTS = 3;
+
+/** Un tarif est-il une formule "week-end" (forfait 3 jours) ? */
+export function isWeekendTarif(tarif) {
+  return !!tarif && tarif.duree === "weekend";
+}
+
 /** Nombre de nuits entre deux dates ISO (YYYY-MM-DD). */
 export function nightsBetween(debut, fin) {
   if (!debut || !fin) return 0;
@@ -96,6 +104,7 @@ export function computeQuote({ items = [], sejour = {}, tarifs = [] }) {
     const gamme = it.gamme === "premium" ? "premium" : "standard";
     const u = unitCents(tarif, gamme);
     const weekly = isWeekly(tarif);
+    const weekend = isWeekendTarif(tarif);
     const mult = weekly ? billable : 1;
     const multFull = weekly ? weeks : 1;
     const lineCents = u * qty * mult;
@@ -110,9 +119,20 @@ export function computeQuote({ items = [], sejour = {}, tarifs = [] }) {
       qty,
       unit_cents: u,
       weekly,
+      weekend,
       weeks_applied: mult,
       line_cents: lineCents,
     });
+  }
+
+  // Cohérence week-end : un forfait week-end ne couvre pas plus de 3 jours.
+  // (On ne valide que si des dates ont été saisies — nights > 0.)
+  const hasWeekend = lines.some((l) => l.weekend);
+  if (hasWeekend && nights > 0 && nights > WEEKEND_MAX_NIGHTS) {
+    errors.push(
+      `Les formules week-end sont limitées à ${WEEKEND_MAX_NIGHTS} jours. ` +
+      `Pour un séjour plus long, choisissez les kits à la semaine.`
+    );
   }
 
   return {

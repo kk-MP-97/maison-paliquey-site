@@ -405,7 +405,7 @@
           '<strong>Gamme Luxe — sur devis personnalisé.</strong><br>' +
           '<span>Linge sur-mesure, matières d\'exception, broderies et monogrammes. Décrivez-nous votre projet, nous revenons vers vous sous 24 h.</span>' +
         '</div>' +
-        '<a href="/reservation?type=particulier&gamme=luxe" class="btn btn-primary btn-sm">Demander un devis Luxe →</a>' +
+        '<a href="/contact?type=particulier&gamme=luxe" class="btn btn-primary btn-sm">Demander un devis Luxe →</a>' +
       '</div>';
     }
 
@@ -757,18 +757,32 @@
     });
   }
 
+  // Construit l'URL /commander avec le panier pré-rempli (réserver & payer
+  // ou demander un devis). intent='devis' nudge l'action devis sur la page.
+  function buildCommanderUrl(intent) {
+    var panierStr = buildPanierForReservation();
+    if (!panierStr) return null;
+    var entries = Object.entries(state.panier).filter(function (e) { return e[1] > 0; });
+    var hasLocation = entries.some(function (e) {
+      var t = state.map[e[0]];
+      return t && (t.categorie === "kit" || t.categorie === "location");
+    });
+    var url = "/commander?panier=" + encodeURIComponent(panierStr);
+    if (hasLocation) {
+      url += "&gamme=" + state.gammeLocation;
+      url += "&duree_semaines=" + state.dureeSemainesLocation;
+    }
+    if (intent) url += "&intent=" + intent;
+    return url;
+  }
+
   var emailBtn = document.getElementById("simu-email");
   if (emailBtn) {
-    emailBtn.addEventListener("click", function () {
-      var txt = buildPanierText();
-      if (!txt) { window.alert("Votre panier est vide."); return; }
-      var subject = encodeURIComponent("Mon estimation Maison Paliquey");
-      var body = encodeURIComponent(
-        "Bonjour,\n\nVoici l'estimation que j'ai composée sur le simulateur Maison Paliquey :\n\n" +
-        txt +
-        "\n\nMerci de me confirmer la disponibilité et les modalités.\n\nCordialement"
-      );
-      window.location.href = "mailto:?subject=" + subject + "&body=" + body;
+    emailBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      var url = buildCommanderUrl("devis");
+      if (!url) { window.alert("Votre panier est vide."); return; }
+      window.location.href = url;
     });
   }
 
@@ -776,28 +790,10 @@
   if (reserverBtn) {
     reserverBtn.addEventListener("click", function (e) {
       e.preventDefault();
-      var panierStr = buildPanierForReservation();
-      var total = computeTotal();
-      var entries = Object.entries(state.panier).filter(function (e) { return e[1] > 0; });
-      var hasLocation = entries.some(function (e) {
-        var t = state.map[e[0]];
-        return t && (t.categorie === "kit" || t.categorie === "location");
-      });
-      var url = "/reservation";
-      if (panierStr) {
-        url += "?panier=" + encodeURIComponent(panierStr);
-        if (hasLocation) {
-          url += "&gamme=" + state.gammeLocation;
-          url += "&duree_semaines=" + state.dureeSemainesLocation;
-          if (state.gammeLocation === "luxe") {
-            url += "&total=devis";
-          } else {
-            url += "&total=" + total.toFixed(2);
-          }
-        } else {
-          url += "&total=" + total.toFixed(2);
-        }
-      }
+      // Gamme Luxe = sur devis : on bascule sur le parcours devis.
+      var intent = state.gammeLocation === "luxe" ? "devis" : null;
+      var url = buildCommanderUrl(intent);
+      if (!url) { window.alert("Votre panier est vide."); return; }
       window.location.href = url;
     });
   }
@@ -1039,7 +1035,7 @@
       var hebdo = computeHebdo();
       var mensuel = hebdo * SEMAINES_PAR_MOIS;
       var profile = B2B_PROFILES[stateB2B.catActive];
-      var url = "/reservation?type=professionnel" +
+      var url = "/contact?type=professionnel" +
         "&activite=" + encodeURIComponent(profile.label) +
         "&volumes_hebdo=" + encodeURIComponent(panierStr) +
         "&estim_hebdo=" + hebdo.toFixed(2) +

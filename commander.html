@@ -33,6 +33,8 @@
     .kit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
     .kit-card{border:1px solid #E5DDD3;border-radius:16px;background:#FDFAF6;padding:1.1rem 1.15rem;display:flex;flex-direction:column;gap:.55rem;transition:.2s ease}
     .kit-card[data-active="true"]{border-color:#1B2A4A;box-shadow:0 2px 14px rgba(27,42,74,.10)}
+    .kit-card[data-unavailable="true"]{opacity:.45;pointer-events:none}
+    .kit-card__flag{font-size:.72rem;color:#C96A1B;font-weight:600}
     .kit-card h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.2rem;color:#1B2A4A;margin:0}
     .kit-card__compo{font-size:.82rem;color:#6B7280;line-height:1.45;flex:1}
     .kit-card__price{font-size:.95rem;color:#1B2A4A;font-weight:500}
@@ -201,7 +203,9 @@
                 <span class="val" data-sum-total>—</span>
               </div>
               <button type="submit" class="btn btn-primary btn-lg pay-btn" data-pay disabled>Payer et réserver</button>
-              <p class="sum-note">Paiement sécurisé par Mollie (CB, Bancontact…). Le règlement vaut réservation ferme de votre linge pour les dates indiquées. Remise et reprise en boutique — aucune livraison.</p>
+              <button type="button" class="btn btn-outline pay-btn" data-devis disabled>Demander un devis</button>
+              <p class="sum-note" data-pay-note>Paiement sécurisé par Mollie (CB, Bancontact…). Le règlement vaut réservation ferme de votre linge pour les dates indiquées. Remise et reprise en boutique — aucune livraison.</p>
+              <p class="sum-note" data-devis-note>Le devis vous est renvoyé sous 24 h après validation par notre équipe, accompagné d'un lien de paiement sécurisé.</p>
             </div>
           </aside>
 
