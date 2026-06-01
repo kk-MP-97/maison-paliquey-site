@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Réserver et payer mon linge — Maison Paliquey Cap Ferret</title>
+  <meta name="description" content="Composez votre kit de linge pour votre séjour au Cap Ferret, ajoutez vos pièces à la carte et réglez en ligne. Réservation ferme immédiate." />
+  <meta name="theme-color" content="#1B2A4A" />
+  <link rel="canonical" href="https://www.maisonpaliquey.fr/commander" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Réserver et payer mon linge — Maison Paliquey" />
+  <meta property="og:description" content="Composez votre kit de linge pour votre séjour, ajoutez vos pièces et réglez en ligne." />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:url" content="https://www.maisonpaliquey.fr/commander" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/site.css?v=1.0.16" />
+  <script src="assets/js/site.js?v=1.0.16" defer></script>
+  <script type="module" src="assets/js/commander.js?v=1.0.16"></script>
+
+  <style>
+    /* ── Configurateur — styles spécifiques (charte Maison Paliquey) ── */
+    .cfg-wrap{display:grid;grid-template-columns:1fr;gap:2rem;align-items:start}
+    @media(min-width:960px){.cfg-wrap{grid-template-columns:1fr 360px}}
+    .cfg-step{margin:0 0 2.25rem}
+    .cfg-step__num{font-family:'DM Sans',sans-serif;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:#C4A882;font-weight:600;margin-bottom:.35rem}
+    .cfg-step__title{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:1.6rem;color:#1B2A4A;margin:0 0 .25rem}
+    .cfg-step__hint{color:#6B7280;font-size:.9rem;margin:0 0 1.1rem}
+    .kit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
+    .kit-card{border:1px solid #E5DDD3;border-radius:16px;background:#FDFAF6;padding:1.1rem 1.15rem;display:flex;flex-direction:column;gap:.55rem;transition:.2s ease}
+    .kit-card[data-active="true"]{border-color:#1B2A4A;box-shadow:0 2px 14px rgba(27,42,74,.10)}
+    .kit-card h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.2rem;color:#1B2A4A;margin:0}
+    .kit-card__compo{font-size:.82rem;color:#6B7280;line-height:1.45;flex:1}
+    .kit-card__price{font-size:.95rem;color:#1B2A4A;font-weight:500}
+    .kit-card__price .unit{color:#6B7280;font-weight:400;font-size:.82rem}
+    .gamme-tabs{display:inline-flex;border:1px solid #E5DDD3;border-radius:999px;overflow:hidden;margin-top:.2rem}
+    .gamme-tabs button{border:0;background:transparent;padding:.3rem .7rem;font:inherit;font-size:.8rem;color:#6B7280;cursor:pointer}
+    .gamme-tabs button[aria-pressed="true"]{background:#1B2A4A;color:#FDFAF6}
+    .stepper{display:inline-flex;align-items:center;gap:.6rem;margin-top:.35rem}
+    .stepper button{width:30px;height:30px;border-radius:8px;border:1px solid #C4A882;background:#fff;color:#1B2A4A;font-size:1.1rem;line-height:1;cursor:pointer}
+    .stepper button:disabled{opacity:.35;cursor:default}
+    .stepper output{min-width:1.4rem;text-align:center;font-weight:600;color:#1B2A4A}
+    .addon-list{display:flex;flex-direction:column;border:1px solid #E5DDD3;border-radius:14px;overflow:hidden}
+    .addon-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 1rem;border-bottom:1px solid #F0EAE1}
+    .addon-row:last-child{border-bottom:0}
+    .addon-row__name{font-size:.92rem;color:#1B2A4A}
+    .addon-row__name small{display:block;color:#6B7280;font-size:.78rem}
+    .addon-cat{font-family:'DM Sans',sans-serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#C4A882;font-weight:600;margin:1.1rem 0 .4rem}
+    .summary{position:sticky;top:1.5rem;border:1px solid #E5DDD3;border-radius:18px;background:#fff;box-shadow:0 2px 12px rgba(27,42,74,.08);overflow:hidden}
+    .summary__head{background:#1B2A4A;color:#FDFAF6;padding:1rem 1.2rem}
+    .summary__head .eyebrow{color:#C4A882;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+    .summary__head h2{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.5rem;margin:.15rem 0 0}
+    .summary__body{padding:1rem 1.2rem}
+    .sum-line{display:flex;justify-content:space-between;gap:1rem;font-size:.88rem;color:#374151;padding:.28rem 0}
+    .sum-line small{color:#6B7280}
+    .sum-empty{color:#6B7280;font-size:.9rem;padding:.5rem 0}
+    .sum-offer{color:#2D6A4F;font-weight:500}
+    .sum-total{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid #E5DDD3;margin-top:.6rem;padding-top:.7rem}
+    .sum-total .lbl{color:#1B2A4A;font-weight:600}
+    .sum-total .val{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:#1B2A4A;font-weight:600}
+    .sum-note{font-size:.74rem;color:#6B7280;margin:.6rem 0 0;line-height:1.5}
+    .pay-btn{width:100%;margin-top:.9rem}
+    .field-inline{display:flex;gap:.8rem;flex-wrap:wrap}
+    .field-inline .form-group{flex:1;min-width:140px}
+    .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+    .cfg-error{background:#FDECEC;border:1px solid #F3C2C2;color:#B91C1C;border-radius:10px;padding:.7rem .9rem;font-size:.88rem;margin-bottom:1rem;display:none}
+    .cfg-error[data-show="true"]{display:block}
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="brand" aria-label="Maison Paliquey — accueil">
+        <img class="brand-mark brand-mark--img" src="assets/img/logo-mp.svg" alt="" aria-hidden="true" width="44" height="44">
+        <span class="brand-name"><span>Maison Paliquey</span><span class="brand-sub">Cap Ferret</span></span>
+      </a>
+      <nav class="site-nav" aria-label="Navigation principale"><ul>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/tarifs">Tarifs</a></li>
+        <li><a href="/reservation">Réservation</a></li>
+        <li><a href="/a-propos">Notre maison</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul></nav>
+      <div class="header-cta">
+        <a href="https://pro.maisonpaliquey.fr" class="btn btn-outline btn-sm">Espace Pro</a>
+        <a href="/commander" class="btn btn-primary btn-sm">Réserver mon linge</a>
+        <button class="mobile-toggle" aria-expanded="false" aria-label="Ouvrir le menu"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-drawer" data-open="false" aria-hidden="true">
+    <nav aria-label="Navigation mobile"><ul>
+      <li><a href="/services">Services</a></li>
+      <li><a href="/tarifs">Tarifs</a></li>
+      <li><a href="/reservation">Réservation</a></li>
+      <li><a href="/a-propos">Notre maison</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+      <div class="mobile-cta"><a href="https://pro.maisonpaliquey.fr" class="btn btn-outline">Espace Pro</a><a href="/commander" class="btn btn-primary">Réserver mon linge</a></div>
+    </nav>
+  </div>
+
+  <main>
+    <section class="hero hero-compact">
+      <div class="container hero-inner">
+        <div class="hero-eyebrow">Réservation & paiement en ligne</div>
+        <h1>Votre linge prêt pour votre séjour</h1>
+        <p class="hero-lede">Composez votre kit, ajoutez vos pièces à la carte, indiquez vos dates : réglez en ligne et votre linge est réservé. Remise et reprise en boutique au Cap Ferret.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cfg-error" role="alert" data-cfg-error></div>
+        <form class="cfg-wrap" data-cfg-form novalidate>
+
+          <div>
+            <!-- Étape 1 — dates -->
+            <div class="cfg-step">
+              <div class="cfg-step__num">Étape 1</div>
+              <h2 class="cfg-step__title">Vos dates de séjour</h2>
+              <p class="cfg-step__hint">Le tarif de location est calculé à la semaine. À partir de 4 semaines, une semaine vous est offerte.</p>
+              <div class="field-inline">
+                <div class="form-group">
+                  <label class="form-label" for="f-debut">Arrivée<span class="req">*</span></label>
+                  <input class="form-control" type="date" id="f-debut" name="sejour_debut" data-debut required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="f-fin">Départ<span class="req">*</span></label>
+                  <input class="form-control" type="date" id="f-fin" name="sejour_fin" data-fin required />
+                </div>
+              </div>
+              <p class="form-help" data-duree-info></p>
+            </div>
+
+            <!-- Étape 2 — kits -->
+            <div class="cfg-step">
+              <div class="cfg-step__num">Étape 2</div>
+              <h2 class="cfg-step__title">Choisissez vos kits</h2>
+              <p class="cfg-step__hint">Tout-inclus, lavé, repassé, prêt à l'emploi. Gamme Standard (coton) ou Premium (lin & duvet) selon les kits.</p>
+              <div class="kit-grid" data-kit-grid aria-live="polite"></div>
+            </div>
+
+            <!-- Étape 3 — à la carte -->
+            <div class="cfg-step">
+              <div class="cfg-step__num">Étape 3 — optionnel</div>
+              <h2 class="cfg-step__title">Ajoutez à la carte</h2>
+              <p class="cfg-step__hint">Pièces de location supplémentaires et forfaits, à l'unité.</p>
+              <div data-addons></div>
+            </div>
+
+            <!-- Étape 4 — coordonnées -->
+            <div class="cfg-step">
+              <div class="cfg-step__num">Étape 4</div>
+              <h2 class="cfg-step__title">Vos coordonnées</h2>
+              <div class="field-inline">
+                <div class="form-group">
+                  <label class="form-label" for="f-prenom">Prénom<span class="req">*</span></label>
+                  <input class="form-control" type="text" id="f-prenom" name="prenom" autocomplete="given-name" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="f-nom">Nom<span class="req">*</span></label>
+                  <input class="form-control" type="text" id="f-nom" name="nom" autocomplete="family-name" required />
+                </div>
+              </div>
+              <div class="field-inline">
+                <div class="form-group">
+                  <label class="form-label" for="f-email">Email<span class="req">*</span></label>
+                  <input class="form-control" type="email" id="f-email" name="email" autocomplete="email" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="f-tel">Téléphone<span class="req">*</span></label>
+                  <input class="form-control" type="tel" id="f-tel" name="telephone" autocomplete="tel" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="f-note">Précision (optionnel)</label>
+                <textarea class="form-control" id="f-note" name="message" rows="2" placeholder="Heure d'arrivée souhaitée, demande particulière…"></textarea>
+              </div>
+              <!-- honeypot anti-bot -->
+              <div class="hp" aria-hidden="true"><label>Ne pas remplir<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+            </div>
+          </div>
+
+          <!-- Récap sticky -->
+          <aside class="summary" aria-label="Récapitulatif">
+            <div class="summary__head">
+              <div class="eyebrow">Votre réservation</div>
+              <h2>Récapitulatif</h2>
+            </div>
+            <div class="summary__body">
+              <div data-sum-lines><p class="sum-empty">Sélectionnez vos kits pour voir le total.</p></div>
+              <div class="sum-total">
+                <span class="lbl">Total à régler</span>
+                <span class="val" data-sum-total>—</span>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg pay-btn" data-pay disabled>Payer et réserver</button>
+              <p class="sum-note">Paiement sécurisé par Mollie (CB, Bancontact…). Le règlement vaut réservation ferme de votre linge pour les dates indiquées. Remise et reprise en boutique — aucune livraison.</p>
+            </div>
+          </aside>
+
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="brand"><img class="brand-mark brand-mark--img" src="assets/img/logo-mp.svg" alt="" aria-hidden="true" width="44" height="44"><span>Maison Paliquey</span></a>
+          <p>Blanchisserie artisanale & maison de linge au Cap Ferret. Le soin du linge, l'élégance du cap.</p>
+        </div>
+        <div class="footer-col"><h4>Services</h4><ul>
+          <li><a href="/services#blanchisserie">Blanchisserie</a></li>
+          <li><a href="/services#pressing">Pressing</a></li>
+          <li><a href="/services#location">Location de linge</a></li>
+          <li><a href="https://pro.maisonpaliquey.fr">Espace Pro</a></li>
+        </ul></div>
+        <div class="footer-col"><h4>Maison</h4><ul>
+          <li><a href="/a-propos">Notre maison</a></li>
+          <li><a href="/tarifs">Tarifs</a></li>
+          <li><a href="/reservation">Réservation</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul></div>
+        <div class="footer-col"><h4>Nous trouver</h4>
+          <address>Lège-Cap-Ferret<br>33950 · Gironde<br><br><a href="mailto:contact@maisonpaliquey.fr">contact@maisonpaliquey.fr</a></address>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© <span data-year>2026</span> Maison Paliquey — SAS LAVOK · Tous droits réservés</div>
+        <div class="legal-links">
+          <a href="/mentions-legales">Mentions légales</a>
+          <a href="/politique-confidentialite">Confidentialité</a>
+          <a href="https://app.maisonpaliquey.fr" class="team-link">Accès équipe —</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
