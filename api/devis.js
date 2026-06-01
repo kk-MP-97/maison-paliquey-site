@@ -111,6 +111,17 @@ export default async function handler(req, res) {
       `<!--CART:${cartJson}-->`,
     ].filter((l) => l !== undefined).join("\n");
 
+    // ── Devis structuré pour l'app-interne (mig 039) ────────────
+    // Pré-rempli tel quel dans la réservation à la conversion par l'opérateur.
+    // prix = prix unitaire effectif (séjour inclus) = line_cents / qty.
+    const devisLignes = quote.lines.map((l) => ({
+      desc: `${l.nom}${l.gamme === "premium" ? " (premium)" : ""}${l.weekly ? ` · ${l.weeks_applied} sem` : ""}`,
+      quantite: l.qty,
+      prix: Math.round(l.line_cents / Math.max(1, l.qty)) / 100,
+      unite: "piece",
+      tarif_id: l.id,
+    }));
+
     // ── Création du lead (prospect) ──────────────────────────────
     const prospectPayload = {
       id: prospectId,
@@ -121,6 +132,11 @@ export default async function handler(req, res) {
       etape: "lead",
       priorite: "haute",
       notes,
+      devis_lignes: devisLignes,
+      devis_total: luxe ? null : quote.total_cents / 100,
+      sejour_debut: sejour.debut || null,
+      sejour_fin: sejour.fin || null,
+      elements_client: message || null,
     };
     const r = await fetch(`${SUPABASE_URL}/rest/v1/prospects`, {
       method: "POST",
