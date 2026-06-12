@@ -1,4 +1,24 @@
+# Maison Paliquey — robots.txt
+# Résumé d'entité pour les moteurs génératifs / agents IA : /llms.txt
+
 User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /portail-pro
+
+# Crawlers IA explicitement autorisés (indexation + citation)
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: ClaudeBot
+User-agent: anthropic-ai
+User-agent: Google-Extended
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: Bingbot
+User-agent: CCBot
 Allow: /
 Disallow: /api/
 Disallow: /portail-pro
