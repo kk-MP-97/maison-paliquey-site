@@ -176,7 +176,7 @@ export default async function handler(req, res) {
     });
 
     // ── Ligne paiements (avant Mollie pour récupérer l'uuid)
-    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
+    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
     const inserted = await supaInsert(SUPABASE_URL, SERVICE_ROLE, "paiements", {
       commande_id: commandeId,
       mollie_status: "open",
