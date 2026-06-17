@@ -15,7 +15,7 @@
  *                   (RESEND_* optionnels — la notif interne passe par Slack)
  */
 
-import { computeQuote, prestationType } from "../shared/pricing.mjs";
+import { computeQuote, prestationType, cartHasLit2p, sanitizeTailleLit } from "../shared/pricing.mjs";
 
 const rateLimitMap = new Map();
 function rateLimit(ip) {
@@ -61,6 +61,7 @@ export default async function handler(req, res) {
     const sejour = body.sejour || {};
     const client = body.client || {};
     const luxe = body.gamme_simulee === "luxe";
+    const tailleLit = cartHasLit2p(items) ? sanitizeTailleLit(body.taille_lit) : null;
 
     const prenom = clip(client.prenom, 120).trim();
     const nom = clip(client.nom, 120).trim();
@@ -101,6 +102,7 @@ export default async function handler(req, res) {
     const notes = [
       `DEMANDE DE DEVIS (site web)`,
       `Séjour : ${sejour.debut} → ${sejour.fin} (${quote.weeks} sem${quote.free_weeks ? `, ${quote.free_weeks} offerte(s)` : ""})`,
+      tailleLit ? `Taille du lit : ${tailleLit}` : "",
       ``,
       `Panier :`,
       recapLignes,
@@ -136,6 +138,7 @@ export default async function handler(req, res) {
       devis_total: luxe ? null : quote.total_cents / 100,
       sejour_debut: sejour.debut || null,
       sejour_fin: sejour.fin || null,
+      taille_lit: tailleLit,
       elements_client: message || null,
     };
     const r = await fetch(`${SUPABASE_URL}/rest/v1/prospects`, {

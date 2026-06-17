@@ -22,8 +22,27 @@
 // Catégories facturées à la semaine (séjour) et éligibles à la semaine offerte.
 const WEEKLY_CATEGORIES = ["kit", "location"];
 
-// Un forfait week-end ne peut pas couvrir plus de 3 jours.
-export const WEEKEND_MAX_NIGHTS = 3;
+// Tolérance séjour (cadrage Karl 2026-06-17) : retrait la veille + retour le
+// lendemain = 2 jours « offerts » non facturés. Le forfait week-end compte
+// 3 jours, donc couvre jusqu'à 5 jours physiques ; la semaine (7 j) jusqu'à 9.
+export const SEJOUR_TOLERANCE_NIGHTS = 2;
+export const WEEKEND_DEFAULT_NIGHTS = 3;
+export const WEEKEND_MAX_NIGHTS = 5;
+
+// Kits comportant un lit 2 places → déclenche la question « taille de lit ».
+export const LIT_2P_TARIF_IDS = ["kit_lit_2p", "kit_lit_2p_we", "kit_weekend_2p", "kit_villa_4p"];
+export const TAILLES_LIT = ["140", "160", "180"];
+export const TAILLE_LIT_DEFAUT = "160";
+
+/** Normalise une taille de lit saisie (renvoie null si invalide). */
+export function sanitizeTailleLit(v) {
+  return TAILLES_LIT.includes(v) ? v : null;
+}
+
+/** Le panier contient-il un kit « lit 2 places » ? */
+export function cartHasLit2p(items = []) {
+  return items.some((it) => LIT_2P_TARIF_IDS.includes(it.id) && (Number(it.qty) || 0) > 0);
+}
 
 /** Un tarif est-il une formule "week-end" (forfait 3 jours) ? */
 export function isWeekendTarif(tarif) {
@@ -41,10 +60,12 @@ export function nightsBetween(debut, fin) {
   return Math.round(ms / 86400000);
 }
 
-/** Nombre de semaines d'un séjour (arrondi au supérieur, minimum 1). */
+/** Nombre de semaines facturées d'un séjour, avec tolérance 2 j (paliers élargis).
+ *  ≤ 9 nuits = 1 semaine (7 j + tolérance) ; au-delà, 1 semaine par palier de 7 j. */
 export function weeksFromNights(nights) {
   if (!nights || nights <= 0) return 1;
-  return Math.max(1, Math.ceil(nights / 7));
+  if (nights <= 7 + SEJOUR_TOLERANCE_NIGHTS) return 1;
+  return Math.max(1, Math.ceil((nights - SEJOUR_TOLERANCE_NIGHTS) / 7));
 }
 
 /** Semaines facturées : 1 offerte toutes les 4 (n − floor(n/4)). */

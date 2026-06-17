@@ -20,7 +20,11 @@
  *   séjour saisi dépasse 3 jours.
  * =====================================================================
  */
-import { computeQuote, isWeekendTarif, WEEKEND_MAX_NIGHTS } from "../../shared/pricing.mjs";
+import {
+  computeQuote, isWeekendTarif,
+  WEEKEND_MAX_NIGHTS, WEEKEND_DEFAULT_NIGHTS,
+  LIT_2P_TARIF_IDS, TAILLE_LIT_DEFAUT,
+} from "../../shared/pricing.mjs";
 
 const TARIFS_URL = "assets/data/tarifs.json?v=1.0.16";
 
@@ -37,6 +41,7 @@ const state = {
   byId: {},
   cart: new Map(), // id -> { qty, gamme }
   sejour: { debut: "", fin: "" },
+  tailleLit: TAILLE_LIT_DEFAUT, // taille du lit 2 places (140/160/180), défaut 160
   devisOnly: false, // gamme Luxe = sur devis, pas de paiement immédiat
 };
 
@@ -105,7 +110,7 @@ function applyPrefillFromURL(debutEl, finEl) {
   const debut = todayISO();
   let fin;
   if (hasWeekendItem || dureeSem === 0) {
-    fin = addDaysISO(debut, WEEKEND_MAX_NIGHTS); // séjour week-end (3 jours)
+    fin = addDaysISO(debut, WEEKEND_DEFAULT_NIGHTS); // séjour week-end (3 jours par défaut)
   } else if (Number.isFinite(dureeSem) && dureeSem >= 1) {
     fin = addDaysISO(debut, dureeSem * 7);
   }
@@ -161,7 +166,7 @@ function kitCardHTML(t) {
   <div class="kit-card" data-kit="${t.id}" data-active="false" data-weekend="${isWeekendTarif(t) ? "true" : "false"}">
     <h3>${esc(t.nom)}</h3>
     <div class="kit-card__compo">${esc(compo)}${note ? `<br><em>${esc(note)}</em>` : ""}</div>
-    <div class="kit-card__flag" data-flag hidden>Limité à 3 jours — séjour trop long</div>
+    <div class="kit-card__flag" data-flag hidden>Limité à 5 jours — séjour trop long</div>
     ${hasPremium ? `
     <div class="gamme-tabs" role="group" aria-label="Gamme ${esc(t.nom)}">
       <button type="button" data-gamme="standard" aria-pressed="true">Confort</button>
@@ -216,6 +221,14 @@ function bindEvents(form, debutEl, finEl) {
   finEl.addEventListener("change", () => {
     state.sejour.fin = finEl.value;
     recompute();
+  });
+
+  // Sélecteur de taille de lit (140 / 160 / 180)
+  document.addEventListener("click", (ev) => {
+    const tBtn = ev.target.closest("[data-taille]");
+    if (!tBtn) return;
+    state.tailleLit = tBtn.dataset.taille;
+    $$("[data-taille]").forEach((b) => b.setAttribute("aria-pressed", String(b === tBtn)));
   });
 
   document.addEventListener("click", (ev) => {
@@ -279,6 +292,11 @@ function recompute() {
   const q = items2.length !== items.length
     ? computeQuote({ items: items2, sejour: state.sejour, tarifs: state.tarifs })
     : quote;
+
+  // Taille de lit : afficher l'étape si un kit "lit 2 places" est au panier
+  const needTaille = LIT_2P_TARIF_IDS.some((id) => state.cart.has(id));
+  const tailleStep = $("[data-taille-step]");
+  if (tailleStep) tailleStep.hidden = !needTaille;
 
   const info = $("[data-duree-info]");
   if (state.sejour.debut && state.sejour.fin && q.nights > 0) {
@@ -345,6 +363,7 @@ async function submit(mode) {
   const payload = {
     items,
     sejour: { debut: state.sejour.debut, fin: state.sejour.fin },
+    taille_lit: LIT_2P_TARIF_IDS.some((id) => state.cart.has(id)) ? state.tailleLit : null,
     client: {
       prenom: form.prenom.value.trim(),
       nom: form.nom.value.trim(),

@@ -23,7 +23,7 @@
  * Runtime : Node.js (ESM, fetch natif). Aucune dépendance externe.
  */
 
-import { computeQuote, prestationType } from "../shared/pricing.mjs";
+import { computeQuote, prestationType, cartHasLit2p, sanitizeTailleLit } from "../shared/pricing.mjs";
 
 // ── Anti-spam basique par IP (mémoire, reset au cold start) ──────────
 const rateLimitMap = new Map();
@@ -112,6 +112,7 @@ export default async function handler(req, res) {
     const items = Array.isArray(body.items) ? body.items : [];
     const sejour = body.sejour || {};
     const client = body.client || {};
+    const tailleLit = cartHasLit2p(items) ? sanitizeTailleLit(body.taille_lit) : null;
 
     // ── Validation coordonnées
     const prenom = clip(client.prenom, 120).trim();
@@ -158,6 +159,7 @@ export default async function handler(req, res) {
       `Commande web — ${customerName}`,
       `Email : ${email} · Tél : ${telephone}`,
       `Séjour : ${sejour.debut} → ${sejour.fin} (${quote.weeks} sem, ${quote.free_weeks} offerte(s))`,
+      tailleLit ? `Taille du lit : ${tailleLit}` : "",
       `Détail : ${recap}`,
       message ? `Message : ${message}` : "",
     ].filter(Boolean).join("\n");
@@ -172,6 +174,7 @@ export default async function handler(req, res) {
       prix_total: quote.total_cents / 100,
       sejour_debut: sejour.debut,
       sejour_fin: sejour.fin,
+      taille_lit: tailleLit,
       notes,
     });
 
