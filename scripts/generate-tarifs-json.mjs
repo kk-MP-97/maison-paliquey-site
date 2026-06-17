@@ -89,8 +89,8 @@ const COMPOSITIONS = {
   },
   kit_bain: {
     items: [
+      { label: 'Draps de bain', qty: 2 },
       { label: 'Serviettes de toilette', qty: 2 },
-      { label: 'Drap de bain', qty: 1 },
       { label: 'Tapis de bain', qty: 1 },
     ],
     note: 'Salle de bain complète · 1 personne',

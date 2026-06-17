@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T21:44:13.362Z",
+  "generated_at": "2026-06-17T19:50:25.833Z",
   "source": "app-interne/src/lib/seedTarifs.js",
   "categories": {
     "blanchisserie_linge_maison": {
@@ -1285,17 +1285,17 @@
       "prix_premium": 26,
       "duree": "semaine",
       "prix_ancien": null,
-      "notes": "2 serviettes + 1 drap de bain + 1 tapis",
+      "notes": "2 draps de bain + 2 serviettes + 1 tapis",
       "ordre": 12,
       "composition": {
         "items": [
           {
-            "label": "Serviettes de toilette",
+            "label": "Draps de bain",
             "qty": 2
           },
           {
-            "label": "Drap de bain",
-            "qty": 1
+            "label": "Serviettes de toilette",
+            "qty": 2
           },
           {
             "label": "Tapis de bain",
