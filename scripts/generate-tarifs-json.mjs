@@ -71,8 +71,7 @@ const COMPOSITIONS = {
   // Kits — déjà notés dans seedTarifs, on enrichit en structuré
   kit_lit_1p: {
     items: [
-      { label: 'Drap-housse', qty: 1 },
-      { label: 'Drap plat',   qty: 1 },
+      { label: 'Drap-housse ou drap plat', qty: 1 },
       { label: 'Housse de couette', qty: 1 },
       { label: 'Taie d\'oreiller', qty: 1 },
     ],
@@ -80,8 +79,7 @@ const COMPOSITIONS = {
   },
   kit_lit_2p: {
     items: [
-      { label: 'Drap-housse double', qty: 1 },
-      { label: 'Drap plat double',   qty: 1 },
+      { label: 'Drap-housse ou drap plat (double)', qty: 1 },
       { label: 'Housse de couette',  qty: 1 },
       { label: 'Taies d\'oreiller',  qty: 2 },
     ],
@@ -93,7 +91,7 @@ const COMPOSITIONS = {
       { label: 'Serviettes de toilette', qty: 2 },
       { label: 'Tapis de bain', qty: 1 },
     ],
-    note: 'Salle de bain complète · 1 personne',
+    note: 'Nécessaire de toilette pour 2 personnes',
   },
   kit_villa_4p: {
     items: [
@@ -114,8 +112,7 @@ const COMPOSITIONS = {
   // pour cohérence du simulateur et de la grille.
   kit_lit_1p_we: {
     items: [
-      { label: 'Drap-housse', qty: 1 },
-      { label: 'Drap plat',   qty: 1 },
+      { label: 'Drap-housse ou drap plat', qty: 1 },
       { label: 'Housse de couette', qty: 1 },
       { label: "Taie d'oreiller", qty: 1 },
     ],
@@ -123,8 +120,7 @@ const COMPOSITIONS = {
   },
   kit_lit_2p_we: {
     items: [
-      { label: 'Drap-housse double', qty: 1 },
-      { label: 'Drap plat double',   qty: 1 },
+      { label: 'Drap-housse ou drap plat (double)', qty: 1 },
       { label: 'Housse de couette',  qty: 1 },
       { label: "Taies d'oreiller",  qty: 2 },
     ],
