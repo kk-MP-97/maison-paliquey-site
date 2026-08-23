@@ -2322,7 +2322,7 @@ select.form-control { appearance: none; background-image: url("data:image/svg+xm
   }
 }
 
-/* ═══ INCENDIES 2026 — début ═══ */
+/* ═══ BANDEAU INFO (réutilisable — actuellement : horaires sept 2026) — début ═══ */
 .cap-notice {
   background: var(--mp-navy);
   color: var(--mp-ivory);
@@ -2354,17 +2354,4 @@ select.form-control { appearance: none; background-image: url("data:image/svg+xm
 }
 @media (prefers-reduced-motion: reduce) { .cap-notice-dot { animation: none; } }
 
-.cap-note { padding: 4.5rem 0; }
-.cap-note-card { max-width: 720px; margin: 0 auto; text-align: center; }
-.cap-note-rule { width: 56px; height: 1px; background: var(--mp-sand); border: 0; margin: 1.75rem auto; }
-.cap-note h2 {
-  font-family: var(--font-display); font-weight: 300;
-  font-size: clamp(1.7rem, 3.4vw, 2.3rem);
-  letter-spacing: -0.02em; color: var(--mp-navy); margin: 0.5rem 0 0;
-}
-.cap-note p { color: #4A5265; line-height: 1.75; margin: 0 0 1.1rem; }
-.cap-note-sign {
-  font-family: var(--font-display); font-style: italic;
-  font-size: 1.15rem; color: var(--mp-navy); margin-top: 1.6rem;
-}
-/* ═══ INCENDIES 2026 — fin ═══ */
+/* ═══ BANDEAU INFO — fin ═══ */
